@@ -7,7 +7,7 @@ interface RegistrationFormProps {
 
 /* ─── Main Component ─── */
 export const RegistrationForm = ({ isCredits }: RegistrationFormProps) => {
-  const REGISTRATION_URL = "";
+  const REGISTRATION_URL = "https://iare.ac.in";
 
   const handleRegister = () => {
     window.open(REGISTRATION_URL, "_blank", "noopener,noreferrer");
