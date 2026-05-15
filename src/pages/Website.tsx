@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { RegistrationForm } from '../components/RegistrationForm';
 
-type Page = 'about' | 'themes' | 'schedule' | 'location' | 'register';
+type Page = 'about' | 'themes' | 'schedule' | 'location';
 
 export function Website() {
   const [currentPage, setCurrentPage] = useState<Page>('about');
@@ -12,7 +11,6 @@ export function Website() {
     { id: 'themes', label: 'THEMES' },
     { id: 'schedule', label: 'SCHEDULE' },
     { id: 'location', label: 'LOCATION' },
-    { id: 'register', label: 'REGISTER' },
   ];
 
   return (
@@ -20,13 +18,7 @@ export function Website() {
       {/* Header */}
       <div className="bg-hackathon-surface border-b-4 border-white z-50">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-2xl md:text-3xl text-hackathon-primary glow-text">CODE<span className="text-hackathon-accent">QUEST</span></h1>
-          <button
-            onClick={() => window.location.reload()}
-            className="pixel-btn text-xs md:text-sm"
-          >
-            ← BACK TO GAME
-          </button>
+          <h1 className="text-2xl md:text-3xl text-hackathon-primary glow-text">DUNGEON OF<span className="text-hackathon-accent"> BINARY</span></h1>
         </div>
       </div>
 
@@ -74,39 +66,66 @@ export function Website() {
                   <div className="pixel-card text-center">
                     <div className="text-3xl mb-2">📅</div>
                     <div className="text-hackathon-secondary text-sm mb-2">DATE</div>
-                    <div className="text-white">May 1-2, 2026</div>
+                    <div className="text-white text-xs">July 17-18, 2026</div>
                   </div>
                   <div className="pixel-card text-center">
                     <div className="text-3xl mb-2">⏱️</div>
                     <div className="text-hackathon-secondary text-sm mb-2">DURATION</div>
-                    <div className="text-white">24 Hours</div>
+                    <div className="text-white text-xs">30 Hours</div>
                   </div>
                   <div className="pixel-card text-center">
                     <div className="text-3xl mb-2">🏆</div>
                     <div className="text-hackathon-secondary text-sm mb-2">PRIZES</div>
-                    <div className="text-white">₹5,00,000+</div>
+                    <div className="text-white text-xs">₹1,20,000</div>
                   </div>
                   <div className="pixel-card text-center">
-                    <div className="text-3xl mb-2">�</div>
+                    <div className="text-3xl mb-2">📍</div>
                     <div className="text-hackathon-secondary text-sm mb-2">LOCATION</div>
-                    <div className="text-white">IARE, Hyderabad</div>
                   </div>
                 </div>
 
                 {/* About Section */}
                 <div className="pixel-card mb-12">
-                  <h3 className="text-2xl text-hackathon-primary mb-4">🎮 WHAT IS CODEQUEST?</h3>
+                  <h3 className="text-2xl text-hackathon-primary mb-4">🎮 THE QUEST BEGINS</h3>
                   <p className="text-gray-300 leading-relaxed mb-4">
-                    CodeQuest is a 24-hour hackathon celebrating retro technology and modern innovation.
-                    Teams compete to build creative projects while navigating our interactive pixel-art
-                    platformer game. Whether you're a seasoned hacker or just starting out, there's a place
-                    for you in our community.
+                    Welcome to Hyderabad's most exciting monsoon hackathon — <strong>The Code Quest: Dungeon of Binary!</strong> 
+                    This dynamic 30-hour adventure is hosted at the Institute of Aeronautical Engineering (IARE), 
+                    bringing together student innovators in an immersive, project-based coding quest.
                   </p>
                   <p className="text-gray-300 leading-relaxed mb-4">
-                    This is more than just a coding competition — it's a celebration of creativity, collaboration,
-                    and the spirit of making. Join hundreds of developers, designers, and innovators for an
-                    unforgettable weekend at IARE, Hyderabad.
+                    Our mission is to fuel innovation, cultivate teamwork, and challenge young developers to push 
+                    the boundaries of creativity. Experience a retro-arcade themed hackathon with cutting-edge 
+                    challenges and hands-on coding over two action-packed days.
                   </p>
+                </div>
+
+                {/* Prize Breakdown */}
+                <div className="pixel-card mb-12 border-2 border-yellow-400">
+                  <h3 className="text-2xl text-yellow-400 mb-6 text-center">🏆 PRIZE POOL BREAKDOWN</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div className="bg-hackathon-surface border-4 border-yellow-400 p-4 text-center">
+                      <div className="text-yellow-400 font-bold text-sm">1ST PLACE</div>
+                      <div className="text-2xl text-white">₹50,000</div>
+                    </div>
+                    <div className="bg-hackathon-surface border-4 border-gray-400 p-4 text-center">
+                      <div className="text-gray-400 font-bold text-sm">2ND PLACE</div>
+                      <div className="text-2xl text-white">₹30,000</div>
+                    </div>
+                    <div className="bg-hackathon-surface border-4 border-orange-600 p-4 text-center">
+                      <div className="text-orange-600 font-bold text-sm">3RD PLACE</div>
+                      <div className="text-2xl text-white">₹20,000</div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-hackathon-surface border-2 border-hackathon-primary p-3 text-center">
+                      <div className="text-hackathon-primary font-bold text-xs">BEST INNOVATION</div>
+                      <div className="text-xl text-white">₹10,000</div>
+                    </div>
+                    <div className="bg-hackathon-surface border-2 border-hackathon-accent p-3 text-center">
+                      <div className="text-hackathon-accent font-bold text-xs">BEST UI/UX</div>
+                      <div className="text-xl text-white">₹10,000</div>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Why Attend */}
@@ -123,7 +142,7 @@ export function Website() {
                     </div>
                     <div className="border-l-4 border-hackathon-accent pl-4">
                       <p className="text-hackathon-accent font-bold mb-2">🏅 Win Prizes</p>
-                      <p className="text-gray-300 text-sm">Compete for $5000+ in prizes and recognition</p>
+                      <p className="text-gray-300 text-sm">Compete for ₹1,20,000 in prizes and recognition</p>
                     </div>
                     <div className="border-l-4 border-yellow-400 pl-4">
                       <p className="text-yellow-400 font-bold mb-2">🎓 Learn & Grow</p>
@@ -151,51 +170,40 @@ export function Website() {
 
                 {/* Main Theme */}
                 <div className="pixel-card mb-8 bg-gradient-to-r from-hackathon-surface to-hackathon-surface border-4 border-hackathon-primary">
-                  <h3 className="text-3xl text-hackathon-primary mb-4">🎯 MAIN THEME: INNOVATE TO ELEVATE</h3>
+                  <h3 className="text-3xl text-hackathon-primary mb-4">🎯 THEME: DUNGEON OF BINARY</h3>
                   <p className="text-gray-300 leading-relaxed mb-4">
                     Create solutions that matter. Build the future with innovation at its core.
                   </p>
                   <p className="text-gray-300 leading-relaxed">
-                    Whether you're a student, professional, or creative - everyone is welcome to participate 
-                    and showcase their skills in one of our specialized tracks.
+                    Choose your quest from one of the specialized challenge themes below. 
+                    May your code compile and your logic prevail!
                   </p>
                 </div>
 
                 {/* Tracks */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="pixel-card">
-                    <h4 className="text-xl text-hackathon-secondary mb-3">🤖 AI TRACK</h4>
+                    <h4 className="text-xl text-blue-500 mb-3">📡 IOT TRACK</h4>
                     <p className="text-gray-300 text-sm">
-                      Build intelligent solutions using machine learning, AI, and automation. 
-                      Create chatbots, predictive models, or AI-powered applications.
+                      Develop innovative, connected device ecosystems to bridge the digital and physical worlds. 
                     </p>
                   </div>
                   <div className="pixel-card">
-                    <h4 className="text-xl text-hackathon-accent mb-3">🌐 WEB TRACK</h4>
+                    <h4 className="text-xl text-hackathon-secondary mb-3">🤖 AI & ML TRACK</h4>
                     <p className="text-gray-300 text-sm">
-                      Develop web applications, progressive web apps, or interactive experiences. 
-                      Use any framework or technology you prefer.
+                      Develop intelligent solutions that solve real-world challenges through data-driven technology.
                     </p>
                   </div>
                   <div className="pixel-card">
-                    <h4 className="text-xl text-green-400 mb-3">🌱 SUSTAINABILITY TRACK</h4>
+                    <h4 className="text-xl text-hackathon-accent mb-3">🎮 GAMIFY TRACK</h4>
                     <p className="text-gray-300 text-sm">
-                      Create solutions that address environmental challenges. Build apps for 
-                      climate action, renewable energy, or eco-friendly innovations.
+                      Design interactive solutions that incorporate gamification principles into software.
                     </p>
                   </div>
                   <div className="pixel-card">
-                    <h4 className="text-xl text-blue-500 mb-3">� IOT TRACK</h4>
+                    <h4 className="text-xl text-yellow-400 mb-3">⛓️ WEB 3.0 TRACK</h4>
                     <p className="text-gray-300 text-sm">
-                      Build connected devices and smart solutions. Create IoT applications, 
-                      smart home projects, or sensor-based innovations.
-                    </p>
-                  </div>
-                  <div className="pixel-card">
-                    <h4 className="text-xl text-yellow-400 mb-3">🚀 OPEN INNOVATION TRACK</h4>
-                    <p className="text-gray-300 text-sm">
-                      Think outside the box. Build anything that doesn't fit other categories - 
-                      hardware, art, music, or experimental projects welcome.
+                      Build decentralized solutions that redefine digital ownership through blockchain.
                     </p>
                   </div>
                 </div>
@@ -214,68 +222,83 @@ export function Website() {
                   <h2 className="text-4xl md:text-5xl text-hackathon-primary glow-text mb-4">
                     SCHEDULE
                   </h2>
-                  <p className="text-gray-400 mb-4">May 1-2, 2026</p>
+                  <p className="text-gray-400 mb-4">July 17-18, 2026</p>
                   <div className="gradient-underline w-48 md:w-64 mx-auto rounded-full" />
                 </motion.div>
 
                 {/* Day 1 */}
                 <div className="pixel-card mb-8">
-                  <h3 className="text-2xl text-hackathon-secondary mb-6">📅 DAY 1 - MAY 1</h3>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center border-b border-white/20 pb-3">
+                  <h3 className="text-2xl text-hackathon-secondary mb-6">📅 DAY 1 - JULY 17</h3>
+                  <div className="space-y-3 text-sm">
+                    <div className="flex justify-between items-center border-b border-white/20 pb-2">
+                      <span className="text-hackathon-primary font-bold">8:00 AM</span>
+                      <span className="text-gray-300">Registration & Check-In</span>
+                    </div>
+                    <div className="flex justify-between items-center border-b border-white/20 pb-2">
                       <span className="text-hackathon-primary font-bold">9:00 AM</span>
-                      <span className="text-gray-300">Doors Open & Registration</span>
+                      <span className="text-gray-300">Opening Ceremony & Keynote</span>
                     </div>
-                    <div className="flex justify-between items-center border-b border-white/20 pb-3">
+                    <div className="flex justify-between items-center border-b border-white/20 pb-2">
                       <span className="text-hackathon-primary font-bold">10:00 AM</span>
-                      <span className="text-gray-300">Opening Ceremony & Theme Reveal</span>
+                      <span className="text-gray-300">Workshops & Sessions</span>
                     </div>
-                    <div className="flex justify-between items-center border-b border-white/20 pb-3">
-                      <span className="text-hackathon-primary font-bold">11:00 AM</span>
-                      <span className="text-gray-300">Hacking Begins!</span>
+                    <div className="flex justify-between items-center border-b border-white/20 pb-2">
+                      <span className="text-hackathon-primary font-bold">12:00 PM</span>
+                      <span className="text-hackathon-secondary glow-text">HACKING BEGINS!</span>
                     </div>
-                    <div className="flex justify-between items-center border-b border-white/20 pb-3">
-                      <span className="text-hackathon-primary font-bold">1:00 PM</span>
-                      <span className="text-gray-300">Lunch Break</span>
-                    </div>
-                    <div className="flex justify-between items-center border-b border-white/20 pb-3">
-                      <span className="text-hackathon-primary font-bold">2:00 PM</span>
-                      <span className="text-gray-300">Hacking Continues</span>
-                    </div>
-                    <div className="flex justify-between items-center border-b border-white/20 pb-3">
-                      <span className="text-hackathon-primary font-bold">7:00 PM</span>
-                      <span className="text-gray-300">Dinner Break</span>
-                    </div>
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center border-b border-white/20 pb-2">
                       <span className="text-hackathon-primary font-bold">8:00 PM</span>
-                      <span className="text-gray-300">Hacking Continues (Late Night)</span>
+                      <span className="text-gray-300">Dinner & Overnight Hacking</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Day 2 */}
-                <div className="pixel-card">
-                  <h3 className="text-2xl text-hackathon-accent mb-6">📅 DAY 2 - MAY 2</h3>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center border-b border-white/20 pb-3">
+                <div className="pixel-card mb-12">
+                  <h3 className="text-2xl text-hackathon-accent mb-6">📅 DAY 2 - JULY 18</h3>
+                  <div className="space-y-3 text-sm">
+                    <div className="flex justify-between items-center border-b border-white/20 pb-2">
                       <span className="text-hackathon-accent font-bold">8:00 AM</span>
-                      <span className="text-gray-300">Breakfast & Final Hacking</span>
+                      <span className="text-gray-300">Morning Briefing</span>
                     </div>
-                    <div className="flex justify-between items-center border-b border-white/20 pb-3">
-                      <span className="text-hackathon-accent font-bold">11:00 AM</span>
-                      <span className="text-gray-300">Final Submissions Deadline</span>
+                    <div className="flex justify-between items-center border-b border-white/20 pb-2">
+                      <span className="text-hackathon-accent font-bold">12:00 PM</span>
+                      <span className="text-hackathon-primary glow-text font-bold">CODE FREEZE</span>
                     </div>
-                    <div className="flex justify-between items-center border-b border-white/20 pb-3">
-                      <span className="text-hackathon-accent font-bold">11:30 AM</span>
-                      <span className="text-gray-300">Judging Begins</span>
-                    </div>
-                    <div className="flex justify-between items-center border-b border-white/20 pb-3">
+                    <div className="flex justify-between items-center border-b border-white/20 pb-2">
                       <span className="text-hackathon-accent font-bold">12:30 PM</span>
-                      <span className="text-gray-300">Lunch & Demos</span>
+                      <span className="text-gray-300">Judging & Demos</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-hackathon-accent font-bold">2:00 PM</span>
-                      <span className="text-gray-300">Awards Ceremony & Closing</span>
+                      <span className="text-gray-300">Closing & Prizes</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Sponsorship Tiers */}
+                <div className="pixel-card">
+                  <h3 className="text-2xl text-hackathon-primary mb-6 text-center">🛡️ SPONSORSHIP TIERS</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div className="bg-hackathon-surface border-2 border-orange-800 p-4 text-center">
+                      <div className="text-orange-800 font-bold mb-2">BRONZE</div>
+                      <div className="text-xl text-white mb-2">₹20,000</div>
+                      <div className="text-[8px] text-gray-400">Workshops, Recognition, Materials</div>
+                    </div>
+                    <div className="bg-hackathon-surface border-2 border-gray-400 p-4 text-center">
+                      <div className="text-gray-400 font-bold mb-2">SILVER</div>
+                      <div className="text-xl text-white mb-2">₹50,000</div>
+                      <div className="text-[8px] text-gray-400">Social Media, Finalist Audience</div>
+                    </div>
+                    <div className="bg-hackathon-surface border-2 border-yellow-400 p-4 text-center">
+                      <div className="text-yellow-400 font-bold mb-2">GOLD</div>
+                      <div className="text-xl text-white mb-2">₹75,000</div>
+                      <div className="text-[8px] text-gray-400">Booth Space, Logo on Swag</div>
+                    </div>
+                    <div className="bg-hackathon-surface border-2 border-hackathon-accent p-4 text-center">
+                      <div className="text-hackathon-accent font-bold mb-2">PLATINUM</div>
+                      <div className="text-xl text-white mb-2">₹1,50,000</div>
+                      <div className="text-[8px] text-gray-400">Crown Patron, Best Branding</div>
                     </div>
                   </div>
                 </div>
@@ -309,7 +332,7 @@ export function Website() {
                         <p className="mt-4"><span className="text-hackathon-secondary">Location:</span></p>
                         <p className="ml-4">Hyderabad, Telangana, India</p>
                         <p className="mt-4"><span className="text-hackathon-secondary">Event Date:</span></p>
-                        <p className="ml-4">May 1-2, 2026</p>
+                        <p className="ml-4">July 17-18, 2026</p>
                         <p className="mt-4"><span className="text-hackathon-secondary">Format:</span></p>
                         <p className="ml-4">In-Person Hackathon</p>
                       </div>
@@ -379,84 +402,13 @@ export function Website() {
               </motion.div>
             )}
 
-            {currentPage === 'register' && (
-              <motion.div
-                key="register"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-              >
-                <motion.div className="text-center mb-12">
-                  <h2 className="text-4xl md:text-5xl text-hackathon-primary glow-text mb-4">
-                    REGISTER NOW
-                  </h2>
-                  <div className="gradient-underline w-48 md:w-64 mx-auto rounded-full" />
-                </motion.div>
-
-                {/* Registration Info */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                  <div className="pixel-card">
-                    <h3 className="text-2xl text-hackathon-secondary mb-4">📋 REGISTRATION DETAILS</h3>
-                    <div className="space-y-3 text-gray-300">
-                      <p><span className="text-hackathon-primary">Team Size:</span> 1-4 members</p>
-                      <p><span className="text-hackathon-primary">Cost per Head:</span> ₹250</p>
-                      <p><span className="text-hackathon-primary">Deadline:</span> April 25, 2026</p>
-                      <p><span className="text-hackathon-primary">Format:</span> In-Person</p>
-                    </div>
-                  </div>
-
-                  <div className="pixel-card">
-                    <h3 className="text-2xl text-hackathon-accent mb-4">📍 VENUE</h3>
-                    <div className="space-y-2 text-gray-300 text-sm">
-                      <p><span className="text-hackathon-primary">College:</span> IARE</p>
-                      <p><span className="text-hackathon-primary">Full Name:</span> Institute of Aeronautical Engineering</p>
-                      <p><span className="text-hackathon-primary">City:</span> Hyderabad</p>
-                      <p><span className="text-hackathon-primary">State:</span> Telangana, India</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Prizes */}
-                <div className="pixel-card mb-8">
-                  <h3 className="text-2xl text-yellow-400 mb-6">🏆 PRIZE POOL</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="bg-hackathon-surface border-4 border-yellow-400 p-6 text-center">
-                      <div className="text-4xl mb-3">🥇</div>
-                      <div className="text-yellow-400 font-bold mb-2 text-lg">1ST PLACE</div>
-                      <div className="text-3xl text-white">₹2,00,000</div>
-                      <p className="text-gray-400 text-xs mt-2">+ Trophies</p>
-                    </div>
-                    <div className="bg-hackathon-surface border-4 border-gray-400 p-6 text-center">
-                      <div className="text-4xl mb-3">🥈</div>
-                      <div className="text-gray-400 font-bold mb-2 text-lg">2ND PLACE</div>
-                      <div className="text-3xl text-white">₹1,20,000</div>
-                      <p className="text-gray-400 text-xs mt-2">+ Trophies</p>
-                    </div>
-                    <div className="bg-hackathon-surface border-4 border-orange-600 p-6 text-center">
-                      <div className="text-4xl mb-3">🥉</div>
-                      <div className="text-orange-600 font-bold mb-2 text-lg">3RD PLACE</div>
-                      <div className="text-3xl text-white">₹80,000</div>
-                      <p className="text-gray-400 text-xs mt-2">+ Trophies</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Embedded Registration Form (connected to Google Sheets) */}
-                <div className="pixel-card">
-                  <h3 className="text-xl text-hackathon-primary mb-2">📝 REGISTER YOUR TEAM</h3>
-                  <p className="text-[10px] text-gray-400 mb-4">Fill in your details — responses are saved directly to Google Sheets.</p>
-                  <RegistrationForm />
-                </div>
-              </motion.div>
-            )}
           </AnimatePresence>
         </div>
       </div>
 
       {/* Footer */}
       <div className="bg-hackathon-surface border-t-2 border-white/30 text-center py-4 text-gray-600 text-xs">
-        <p>© 2026 CODEQUEST • BUILT WITH REACT + PHASER 3 • 📊 POWERED BY GOOGLE SHEETS</p>
+        <p>© 2026 DUNGEON OF BINARY • MONSOON EDITION • IARE HYDERABAD</p>
       </div>
     </div>
   );

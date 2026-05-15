@@ -13,7 +13,6 @@
     "autoprefixer": "^10.4.27",
     "framer-motion": "^12.35.0",
     "lucide-react": "^0.577.0",
-    "phaser": "^3.90.0",
     "postcss": "^8.5.8",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
