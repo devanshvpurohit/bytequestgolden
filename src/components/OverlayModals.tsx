@@ -115,6 +115,11 @@ export const OverlayModals = () => {
             if (blockingModal?.id === id) {
                 setBlockingModal(null);
                 EventBus.emit('modal-active', false);
+                
+                // If they close the victory/credits modal, take them to the website
+                if (id === 'credits') {
+                    EventBus.emit('show-website');
+                }
             }
         };
 

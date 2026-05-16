@@ -62,12 +62,7 @@ export class Game extends Scene {
         this.isDayTheme = hour >= 6 && hour < 18; // 6 AM to 6 PM is daytime
         return this.isDayTheme ? '#87ceeb' : '#0a0010';
     }
-    private interpolateColor(color1: string, color2: string, t: number): string {
-        const c1 = Phaser.Display.Color.HexStringToColor(color1);
-        const c2 = Phaser.Display.Color.HexStringToColor(color2);
-        const c = Phaser.Display.Color.Interpolate.ColorWithColor(c1, c2, 100, t * 100);
-        return '#' + Phaser.Display.Color.RGBToString(c.r, c.g, c.b, 0, '#');
-    }
+
 
     private generatePixelArt(key: string, palette: Record<string, number>, pixels: string[], scale: number = 4) {
         const graphics = this.add.graphics();

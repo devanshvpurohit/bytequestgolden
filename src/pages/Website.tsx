@@ -22,7 +22,9 @@ export function Website() {
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <h1 className="text-2xl md:text-3xl text-hackathon-primary glow-text">CODE<span className="text-hackathon-accent">QUEST</span></h1>
           <button
-            onClick={() => window.location.reload()}
+            onClick={() => {
+              import('../game/EventBus').then(m => m.EventBus.emit('show-game'));
+            }}
             className="pixel-btn text-xs md:text-sm"
           >
             ← BACK TO GAME

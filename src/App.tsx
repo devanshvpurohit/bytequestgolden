@@ -22,10 +22,17 @@ function App() {
       setIsGameRunning(false);
     };
 
+    const handleShowGame = () => {
+      setShowWebsite(false);
+      setIsGameRunning(true);
+    };
+
     EventBus.on('show-website', handleShowWebsite);
+    EventBus.on('show-game', handleShowGame);
 
     return () => {
       EventBus.removeListener('show-website', handleShowWebsite);
+      EventBus.removeListener('show-game', handleShowGame);
     };
   }, []);
 
@@ -275,6 +282,17 @@ function App() {
           >
             <PhaserGame ref={phaserRef} currentActiveScene={onActiveScene} />
             <OverlayModals />
+
+            {/* Persistent Navigation */}
+            <div className="absolute top-4 right-4 z-50 flex gap-2">
+              <button 
+                onClick={() => setShowWebsite(true)}
+                className="pixel-btn bg-hackathon-surface text-hackathon-primary py-2 px-4 text-[10px] hover:bg-hackathon-primary hover:text-black transition-all flex items-center gap-2"
+                style={{ boxShadow: '4px 4px 0px rgba(0,0,0,0.8)' }}
+              >
+                ⊳ SKIP TO WEBSITE
+              </button>
+            </div>
 
             {/* Mobile Touch Controls - Visible only on md/sm screens */}
             <div className="absolute bottom-4 left-4 right-4 z-20 flex justify-between items-end md:hidden select-none pointer-events-none">
