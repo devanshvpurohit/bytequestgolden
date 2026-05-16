@@ -55,40 +55,13 @@ export class Game extends Scene {
         super('Game');
     }
 
-    private getTimeOfDayColor(): string {
-        // Get current hour (0-23)
-        const hour = new Date().getHours();
-        const minute = new Date().getMinutes();
-        const timeInMinutes = hour * 60 + minute;
-        
-        // Map time to cycle (0-1)
-        // 6 AM = 0 (dawn), 12 PM = 0.5 (noon), 6 PM = 1 (dusk), 12 AM = 0 (night)
-        const cycleTime = (timeInMinutes % 1440) / 1440; // 1440 = 24 hours in minutes
-        
-        // Define colors for different times
-        let color: string;
-        
-        if (cycleTime < 0.25) {
-            // 12 AM - 6 AM: Night to Dawn (dark purple to orange)
-            const t = cycleTime / 0.25;
-            color = this.interpolateColor('#0a0010', '#ff6b35', t);
-        } else if (cycleTime < 0.5) {
-            // 6 AM - 12 PM: Dawn to Noon (orange to bright cyan)
-            const t = (cycleTime - 0.25) / 0.25;
-            color = this.interpolateColor('#ff6b35', '#87ceeb', t);
-        } else if (cycleTime < 0.75) {
-            // 12 PM - 6 PM: Noon to Dusk (bright cyan to orange)
-            const t = (cycleTime - 0.5) / 0.25;
-            color = this.interpolateColor('#87ceeb', '#ff6b35', t);
-        } else {
-            // 6 PM - 12 AM: Dusk to Night (orange to dark purple)
-            const t = (cycleTime - 0.75) / 0.25;
-            color = this.interpolateColor('#ff6b35', '#0a0010', t);
-        }
-        
-        return color;
-    }
+    private isDayTheme: boolean = false;
 
+    private getTimeOfDayColor(): string {
+        const hour = new Date().getHours();
+        this.isDayTheme = hour >= 6 && hour < 18; // 6 AM to 6 PM is daytime
+        return this.isDayTheme ? '#87ceeb' : '#0a0010';
+    }
     private interpolateColor(color1: string, color2: string, t: number): string {
         const c1 = Phaser.Display.Color.HexStringToColor(color1);
         const c2 = Phaser.Display.Color.HexStringToColor(color2);
@@ -325,14 +298,16 @@ export class Game extends Scene {
             .setScrollFactor(0.15)
             .setAlpha(0.7);
         
-        // Add stars for atmosphere
-        for (let i = 0; i < 50; i++) {
-            const starX = Math.random() * worldWidth;
-            const starY = Math.random() * 300;
-            const starSize = Math.random() * 2 + 1;
-            this.add.rectangle(starX, starY, starSize, starSize, 0xffffff)
-                .setScrollFactor(0.1)
-                .setAlpha(Math.random() * 0.6 + 0.3);
+        // Add stars for atmosphere (only at night)
+        if (!this.isDayTheme) {
+            for (let i = 0; i < 50; i++) {
+                const starX = Math.random() * worldWidth;
+                const starY = Math.random() * 300;
+                const starSize = Math.random() * 2 + 1;
+                this.add.rectangle(starX, starY, starSize, starSize, 0xffffff)
+                    .setScrollFactor(0.1)
+                    .setAlpha(Math.random() * 0.6 + 0.3);
+            }
         }
 
         // Build World Layers
@@ -420,7 +395,7 @@ export class Game extends Scene {
         const segW = 28, segH = 14, segGap = 4;
         const barX = 18, barY = 18;
         this.add.text(barX, barY, 'HP', {
-            fontFamily: '"Press Start 2P"', fontSize: '8px', color: '#aaaaaa'
+            fontFamily: '"Press Start 2P"', fontSize: '8px', color: '#aaaaaa', stroke: '#000', strokeThickness: 2
         }).setScrollFactor(0).setDepth(101);
 
         for (let i = 0; i < this.playerMaxHP; i++) {
@@ -438,12 +413,12 @@ export class Game extends Scene {
 
         // ── Lives counter ────────────────────────────────────────────────────
         this.livesText = this.add.text(barX, barY + 22, `♥ x${this.playerLives}`, {
-            fontFamily: '"Press Start 2P"', fontSize: '8px', color: '#ff6666'
+            fontFamily: '"Press Start 2P"', fontSize: '8px', color: '#ff6666', stroke: '#000', strokeThickness: 2
         }).setScrollFactor(0).setDepth(101);
 
         // ── Coin counter ─────────────────────────────────────────────────────
         this.coinText = this.add.text(barX, barY + 40, '🪙 x0', {
-            fontFamily: '"Press Start 2P"', fontSize: '9px', color: '#facc15'
+            fontFamily: '"Press Start 2P"', fontSize: '9px', color: '#facc15', stroke: '#000', strokeThickness: 2
         }).setScrollFactor(0).setDepth(101);
 
         // ── Combo counter ─────────────────────────────────────────────────────
@@ -455,7 +430,7 @@ export class Game extends Scene {
         // ── Control hint (fades after 5 s) ────────────────────────────────────
         const hint = this.add.text(W / 2, 4,
             '← → MOVE  |  SPACE JUMP  |  SHIFT DASH  |  F FIRE',
-            { fontFamily: '"Press Start 2P"', fontSize: '7px', color: '#888888' }
+            { fontFamily: '"Press Start 2P"', fontSize: '7px', color: '#dddddd', stroke: '#000', strokeThickness: 2 }
         ).setScrollFactor(0).setDepth(101).setOrigin(0.5);
         this.time.delayedCall(5000, () =>
             this.tweens.add({ targets: hint, alpha: 0, duration: 800, onComplete: () => hint.destroy() })
