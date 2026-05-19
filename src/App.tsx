@@ -11,6 +11,7 @@ function App() {
   const [isGameRunning, setIsGameRunning] = useState(false);
   const [showWebsite, setShowWebsite] = useState(false);
   const [showInstructions, setShowInstructions] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   const onActiveScene = (scene: Phaser.Scene) => {
     console.log('Scene started:', scene.scene.key);
@@ -30,9 +31,31 @@ function App() {
     EventBus.on('show-website', handleShowWebsite);
     EventBus.on('show-game', handleShowGame);
 
+    // Detect touch device (more reliable than screen width for mobile landscape)
+    setIsTouchDevice(window.matchMedia("(pointer: coarse)").matches);
+
+    // Handle orientation change bug in mobile browsers where dvh takes a moment to update
+    const handleResize = () => {
+      setTimeout(() => {
+        if (phaserRef.current?.game) {
+           phaserRef.current.game.scale.resize(window.innerWidth, window.innerHeight);
+        }
+      }, 100);
+      setTimeout(() => {
+        if (phaserRef.current?.game) {
+           phaserRef.current.game.scale.resize(window.innerWidth, window.innerHeight);
+        }
+      }, 500); // secondary fallback
+    };
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+
     return () => {
       EventBus.removeListener('show-website', handleShowWebsite);
       EventBus.removeListener('show-game', handleShowGame);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
     };
   }, []);
 
@@ -294,8 +317,9 @@ function App() {
               </button>
             </div>
 
-            {/* Mobile Touch Controls - Visible only on md/sm screens */}
-            <div className="absolute bottom-4 left-4 right-4 z-20 flex justify-between items-end md:hidden select-none pointer-events-none">
+            {/* Mobile Touch Controls - Visible only on touch devices */}
+            {isTouchDevice && (
+              <div className="absolute bottom-4 left-4 right-4 z-20 flex justify-between items-end select-none pointer-events-none">
               {/* D-Pad (Left/Right) */}
               <div className="flex gap-2 pointer-events-auto">
                 <button 
@@ -349,6 +373,7 @@ function App() {
                 </button>
               </div>
             </div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
