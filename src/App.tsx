@@ -47,7 +47,7 @@ function App() {
   }));
 
   return (
-    <div className="w-screen h-screen bg-hackathon-bg flex items-center justify-center font-pixel relative overflow-hidden">
+    <div className="w-full h-dvh bg-hackathon-bg flex items-center justify-center font-pixel relative overflow-hidden">
       <AnimatePresence mode="wait">
         {showWebsite ? (
           <Website />

@@ -16,7 +16,7 @@ export function Website() {
   ];
 
   return (
-    <div className="w-screen h-screen bg-hackathon-bg text-white font-pixel flex flex-col">
+    <div className="w-full h-dvh bg-hackathon-bg text-white font-pixel flex flex-col">
       {/* Header */}
       <div className="bg-hackathon-surface border-b-4 border-white z-50">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
