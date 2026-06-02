@@ -1,4 +1,4 @@
-# The Code Quest: Dungeon of Binary
+# Byte Quest: Dungeon of Binary
 
 A 30-hour immersive, retro-themed hackathon hosted at the **Institute of Aeronautical Engineering (IARE), Hyderabad**.
 
@@ -42,4 +42,4 @@ This project is more than just a landing page; it's an interactive journey. Part
 To fuel innovation, cultivate teamwork, and challenge young developers to push the boundaries of what they can create.
 
 ---
-© 2026 The Code Quest • IARE Hyderabad
+© 2026 Byte Quest • IARE Hyderabad

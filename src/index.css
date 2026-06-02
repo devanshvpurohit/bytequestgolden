@@ -152,23 +152,32 @@
   }
 }
 
-/* ===== Scrollbar ===== */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
+/* ===== Global Scrollbar Styles ===== */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: #0a0a1a;
-  border: 1px solid #333;
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: var(--color-hackathon-primary);
-  border: 1px solid #000;
+  border: 2px solid #0a0a1a;
+  box-shadow: inset -2px -2px 0px rgba(0, 0, 0, 0.4), inset 2px 2px 0px rgba(255, 255, 255, 0.2);
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #22c55e;
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-hackathon-secondary);
+}
+
+/* Firefox Support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-hackathon-primary) #0a0a1a;
 }
 
 /* ===== Gradient underline ===== */

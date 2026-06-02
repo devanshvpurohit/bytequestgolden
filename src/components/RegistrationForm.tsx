@@ -26,7 +26,7 @@ export const RegistrationForm = ({ isCredits }: RegistrationFormProps) => {
         >
           <div className="flex flex-col gap-3">
             <h3 className="text-2xl text-hackathon-primary glow-text uppercase">
-              The Code Quest
+              Byte Quest
             </h3>
             <p className="text-sm text-hackathon-accent uppercase tracking-widest">
               Dungeon of Binary
@@ -133,7 +133,7 @@ export const RegistrationForm = ({ isCredits }: RegistrationFormProps) => {
           SYSTEM READY
         </h3>
         <p className="text-sm text-gray-200 leading-relaxed mb-6">
-          The Code Quest: Dungeon of Binary is a 30-hour immersive hackathon
+          Byte Quest: Dungeon of Binary is a 30-hour immersive hackathon
           hosted at IARE, Hyderabad. Join hundreds of student innovators for an
           unforgettable retro-themed coding adventure. Competing for a prize
           pool of{" "}

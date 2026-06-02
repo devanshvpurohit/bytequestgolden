@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { RegistrationForm } from '../components/RegistrationForm';
 
-type Page = 'about' | 'themes' | 'schedule' | 'location' | 'register';
+type Page = 'about' | 'themes' | 'schedule' | 'location' | 'partners' | 'register';
 
 export function Website() {
   const [currentPage, setCurrentPage] = useState<Page>('about');
@@ -12,6 +12,7 @@ export function Website() {
     { id: 'themes', label: 'THEMES' },
     { id: 'schedule', label: 'SCHEDULE' },
     { id: 'location', label: 'LOCATION' },
+    { id: 'partners', label: 'PARTNERS' },
     { id: 'register', label: 'REGISTER' },
   ];
 
@@ -20,7 +21,15 @@ export function Website() {
       {/* Header */}
       <div className="bg-hackathon-surface border-b-4 border-white z-50">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-2xl md:text-3xl text-hackathon-primary glow-text">CODE<span className="text-hackathon-accent">QUEST</span></h1>
+          <div className="flex items-center gap-2 md:gap-3">
+            <div className="bg-white border-2 border-hackathon-primary p-0.5 rounded-sm h-8 md:h-10 w-8 md:w-10 flex items-center justify-center">
+              <img src="/assets/logo_ecell.png" alt="E-Cell IARE" className="h-full w-auto object-contain" />
+            </div>
+            <div className="bg-white border-2 border-hackathon-primary p-0.5 rounded-sm h-8 md:h-10 w-8 md:w-10 flex items-center justify-center">
+              <img src="/assets/logo_robot.png" alt="Byte Quest Robot" className="h-full w-auto object-contain" />
+            </div>
+            <h1 className="text-2xl md:text-3xl text-hackathon-primary glow-text ml-1 md:ml-2">BYTE<span className="text-hackathon-accent">QUEST</span></h1>
+          </div>
           <button
             onClick={() => {
               import('../game/EventBus').then(m => m.EventBus.emit('show-game'));
@@ -65,7 +74,7 @@ export function Website() {
                 {/* Hero Section */}
                 <motion.div className="text-center mb-12">
                   <h2 className="text-4xl md:text-5xl text-hackathon-primary glow-text mb-4 uppercase">
-                    The Code Quest
+                    Byte Quest
                   </h2>
                   <p className="text-hackathon-accent text-lg mb-4 tracking-[0.3em]">DUNGEON OF BINARY</p>
                   <div className="gradient-underline w-48 md:w-64 mx-auto rounded-full" />
@@ -99,7 +108,7 @@ export function Website() {
                 <div className="pixel-card mb-8">
                   <h3 className="text-2xl text-hackathon-primary mb-4 uppercase">🎮 Event Overview</h3>
                   <p className="text-gray-300 leading-relaxed mb-4">
-                    Welcome to Hyderabad's most exciting monsoon hackathon — The Code Quest: Dungeon of Binary! 
+                    Welcome to Hyderabad's most exciting monsoon hackathon — Byte Quest: Dungeon of Binary! 
                     This dynamic 30-hour hackathon is hosted in collaboration with and at the Institute of 
                     Aeronautical Engineering (IARE), bringing together student innovators in an immersive, 
                     project-based coding adventure.
@@ -388,6 +397,77 @@ export function Website() {
               </motion.div>
             )}
 
+            {currentPage === 'partners' && (
+              <motion.div
+                key="partners"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div className="text-center mb-12">
+                  <h2 className="text-4xl md:text-5xl text-hackathon-primary glow-text mb-4 uppercase">
+                    Guild Partners
+                  </h2>
+                  <p className="text-hackathon-accent text-sm tracking-widest uppercase">The Mighty Allies Supporting Our Quest</p>
+                  <div className="gradient-underline w-48 md:w-64 mx-auto rounded-full" />
+                </motion.div>
+
+                {/* Partners Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                  <div className="pixel-card flex flex-col items-center justify-center p-6 text-center group hover:border-hackathon-primary transition-colors">
+                    <div className="w-32 h-32 mb-4 bg-black/40 border-2 border-white/20 p-2 overflow-hidden flex items-center justify-center relative">
+                      <img src="/assets/nexus_logo.png" alt="Nexus" className="w-full h-full object-contain filter brightness-90 group-hover:brightness-110 transition-all duration-300" />
+                      <div className="absolute inset-0 bg-scanlines opacity-10 pointer-events-none" />
+                    </div>
+                    <div className="text-hackathon-secondary font-bold mb-1 uppercase text-sm tracking-wider">NEXUS LABS</div>
+                    <div className="text-[9px] text-gray-400">Quantum Network Core</div>
+                  </div>
+
+                  <div className="pixel-card flex flex-col items-center justify-center p-6 text-center group hover:border-hackathon-primary transition-colors">
+                    <div className="w-32 h-32 mb-4 bg-black/40 border-2 border-white/20 p-2 overflow-hidden flex items-center justify-center relative">
+                      <img src="/assets/cyber_logo.png" alt="Cyberdyne" className="w-full h-full object-contain filter brightness-90 group-hover:brightness-110 transition-all duration-300" />
+                      <div className="absolute inset-0 bg-scanlines opacity-10 pointer-events-none" />
+                    </div>
+                    <div className="text-hackathon-primary font-bold mb-1 uppercase text-sm tracking-wider">CYBER CORP</div>
+                    <div className="text-[9px] text-gray-400">Synthetic Processing Systems</div>
+                  </div>
+
+                  <div className="pixel-card flex flex-col items-center justify-center p-6 text-center group hover:border-hackathon-primary transition-colors">
+                    <div className="w-32 h-32 mb-4 bg-black/40 border-2 border-white/20 p-2 overflow-hidden flex items-center justify-center relative">
+                      <img src="/assets/pixel_quantum.png" alt="Pixel Quantum" className="w-full h-full object-contain filter brightness-90 group-hover:brightness-110 transition-all duration-300" />
+                      <div className="absolute inset-0 bg-scanlines opacity-10 pointer-events-none" />
+                    </div>
+                    <div className="text-hackathon-accent font-bold mb-1 uppercase text-sm tracking-wider">QUANTUM COMP</div>
+                    <div className="text-[9px] text-gray-400">Supercomputing Solutions</div>
+                  </div>
+
+                  <div className="pixel-card flex flex-col items-center justify-center p-6 text-center group hover:border-hackathon-primary transition-colors">
+                    <div className="w-32 h-32 mb-4 bg-black/40 border-2 border-white/20 p-2 overflow-hidden flex items-center justify-center relative">
+                      <img src="/assets/retro_gaming.png" alt="Retro Gaming" className="w-full h-full object-contain filter brightness-90 group-hover:brightness-110 transition-all duration-300" />
+                      <div className="absolute inset-0 bg-scanlines opacity-10 pointer-events-none" />
+                    </div>
+                    <div className="text-yellow-400 font-bold mb-1 uppercase text-sm tracking-wider">RETRO GAMING</div>
+                    <div className="text-[9px] text-gray-400">Dungeon Design & Audio</div>
+                  </div>
+                </div>
+
+                {/* Call to Partner card */}
+                <div className="pixel-card border-dashed border-white/20 bg-black/20 text-center py-8">
+                  <h3 className="text-xl text-hackathon-primary mb-2 uppercase">🛡️ Become a Guild Partner</h3>
+                  <p className="text-xs text-gray-400 max-w-lg mx-auto mb-6 leading-relaxed">
+                    Equip our explorers with weapons (tools), mana (APIs), and rewards. Support the next generation of innovators.
+                  </p>
+                  <button
+                    onClick={() => setCurrentPage('register')}
+                    className="pixel-btn bg-hackathon-primary text-black hover:scale-105 active:scale-95 transition-all text-xs"
+                  >
+                    🤝 JOIN AS PARTNER
+                  </button>
+                </div>
+              </motion.div>
+            )}
+
             {currentPage === 'register' && (
               <motion.div
                 key="register"
@@ -477,7 +557,7 @@ export function Website() {
 
       {/* Footer */}
       <div className="bg-hackathon-surface border-t-2 border-white/30 text-center py-4 text-gray-600 text-[10px] uppercase tracking-widest">
-        <p>© 2026 The Code Quest • Dungeon of Binary • IARE Hyderabad</p>
+        <p>© 2026 Byte Quest • Dungeon of Binary • IARE Hyderabad</p>
       </div>
     </div>
   );

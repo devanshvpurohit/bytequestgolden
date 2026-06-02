@@ -8,11 +8,18 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     private shiftKey!: Phaser.Input.Keyboard.Key;
 
     // Mobile Virtual Inputs
-    private mInput = { left: false, right: false, up: false, shift: false };
+    private mInput = { left: false, right: false, up: false, down: false, shift: false };
     private mJustPressed = { up: false, f: false, shift: false };
     private mJustReleased = { up: false };
 
     public getCursors() { return this.cursors; }
+
+    public isDownPressed(): boolean {
+        const keyboardDown = this.scene.input.keyboard ? (
+            this.cursors.down.isDown || this.wasdKeys.down.isDown
+        ) : false;
+        return keyboardDown || this.mInput.down;
+    }
 
     // ── Physics ──────────────────────────────────────────
     private readonly SPEED          = 350;
