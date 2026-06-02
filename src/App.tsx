@@ -120,7 +120,7 @@ function App() {
                   WELCOME TO
                 </div>
                 <h1 className="text-3xl md:text-5xl lg:text-6xl text-hackathon-primary glow-text leading-tight uppercase">
-                  Code<br />Quest
+                  Byte<br />Quest
                 </h1>
                 <div className="gradient-underline w-48 md:w-64 mt-4 rounded-full" />
               </motion.div>
@@ -292,7 +292,7 @@ function App() {
                 transition={{ delay: 1.6 }}
                 className="absolute -bottom-24 text-[7px] text-gray-600"
               >
-                BUILT WITH PHASER 3 + REACT • © 2026 THE CODE QUEST
+                BUILT WITH PHASER 3 + REACT • © 2026 BYTE QUEST
               </motion.div>
             </div>
           </motion.div>
@@ -317,13 +317,13 @@ function App() {
               </button>
             </div>
 
-            {/* Mobile Touch Controls - Visible only on touch devices */}
+             {/* Mobile Touch Controls - Visible only on touch devices */}
             {isTouchDevice && (
-              <div className="absolute bottom-4 left-4 right-4 z-20 flex justify-between items-end select-none pointer-events-none">
-              {/* D-Pad (Left/Right) */}
-              <div className="flex gap-2 pointer-events-auto">
+              <div className="absolute bottom-3 left-3 right-3 z-20 flex justify-between items-end select-none pointer-events-none">
+              {/* D-Pad (Left/Down/Right) */}
+              <div className="flex gap-1.5 pointer-events-auto">
                 <button 
-                  className="w-16 h-16 bg-white/20 border-2 border-white/50 rounded-full active:bg-white/40 flex items-center justify-center backdrop-blur-sm"
+                  className="w-12 h-12 bg-white/20 border border-white/50 rounded-full active:bg-white/40 flex items-center justify-center backdrop-blur-sm text-xs"
                   onTouchStart={(e) => { e.preventDefault(); EventBus.emit('mobile-input', { key: 'left', state: true }); }}
                   onTouchEnd={(e) => { e.preventDefault(); EventBus.emit('mobile-input', { key: 'left', state: false }); }}
                   onMouseDown={(e) => { e.preventDefault(); EventBus.emit('mobile-input', { key: 'left', state: true }); }}
@@ -332,7 +332,16 @@ function App() {
                   ◀
                 </button>
                 <button 
-                  className="w-16 h-16 bg-white/20 border-2 border-white/50 rounded-full active:bg-white/40 flex items-center justify-center backdrop-blur-sm"
+                  className="w-12 h-12 bg-white/20 border border-white/50 rounded-full active:bg-white/40 flex items-center justify-center backdrop-blur-sm text-xs"
+                  onTouchStart={(e) => { e.preventDefault(); EventBus.emit('mobile-input', { key: 'down', state: true }); }}
+                  onTouchEnd={(e) => { e.preventDefault(); EventBus.emit('mobile-input', { key: 'down', state: false }); }}
+                  onMouseDown={(e) => { e.preventDefault(); EventBus.emit('mobile-input', { key: 'down', state: true }); }}
+                  onMouseUp={(e) => { e.preventDefault(); EventBus.emit('mobile-input', { key: 'down', state: false }); }}
+                >
+                  ▼
+                </button>
+                <button 
+                  className="w-12 h-12 bg-white/20 border border-white/50 rounded-full active:bg-white/40 flex items-center justify-center backdrop-blur-sm text-xs"
                   onTouchStart={(e) => { e.preventDefault(); EventBus.emit('mobile-input', { key: 'right', state: true }); }}
                   onTouchEnd={(e) => { e.preventDefault(); EventBus.emit('mobile-input', { key: 'right', state: false }); }}
                   onMouseDown={(e) => { e.preventDefault(); EventBus.emit('mobile-input', { key: 'right', state: true }); }}
@@ -343,9 +352,9 @@ function App() {
               </div>
 
               {/* Action Buttons (Jump, Attack, Dash) */}
-              <div className="flex gap-2 pointer-events-auto">
+              <div className="flex gap-1.5 pointer-events-auto items-end">
                 <button 
-                  className="w-14 h-14 bg-hackathon-accent/30 border-2 border-hackathon-accent rounded-full active:bg-hackathon-accent/60 flex items-center justify-center backdrop-blur-sm"
+                  className="w-10 h-10 bg-hackathon-accent/30 border border-hackathon-accent rounded-full active:bg-hackathon-accent/60 flex items-center justify-center backdrop-blur-sm text-xs"
                   onTouchStart={(e) => { e.preventDefault(); EventBus.emit('mobile-input', { key: 'shift', state: true }); }}
                   onTouchEnd={(e) => { e.preventDefault(); EventBus.emit('mobile-input', { key: 'shift', state: false }); }}
                   onMouseDown={(e) => { e.preventDefault(); EventBus.emit('mobile-input', { key: 'shift', state: true }); }}
@@ -354,7 +363,7 @@ function App() {
                   ⚡
                 </button>
                 <button 
-                  className="w-16 h-16 bg-red-500/30 border-2 border-red-500 rounded-full active:bg-red-500/60 flex items-center justify-center mb-6 backdrop-blur-sm shadow-[0_0_15px_rgba(239,68,68,0.5)]"
+                  className="w-12 h-12 bg-red-500/30 border border-red-500 rounded-full active:bg-red-500/60 flex items-center justify-center mb-3 backdrop-blur-sm shadow-[0_0_10px_rgba(239,68,68,0.4)] text-xs"
                   onTouchStart={(e) => { e.preventDefault(); EventBus.emit('mobile-input', { key: 'f', state: true }); }}
                   onTouchEnd={(e) => { e.preventDefault(); EventBus.emit('mobile-input', { key: 'f', state: false }); }}
                   onMouseDown={(e) => { e.preventDefault(); EventBus.emit('mobile-input', { key: 'f', state: true }); }}
@@ -363,7 +372,7 @@ function App() {
                   ☄️
                 </button>
                 <button 
-                  className="w-16 h-16 bg-hackathon-primary/30 border-2 border-hackathon-primary rounded-full active:bg-hackathon-primary/60 flex items-center justify-center backdrop-blur-sm shadow-[0_0_15px_rgba(74,222,128,0.5)]"
+                  className="w-12 h-12 bg-hackathon-primary/30 border border-hackathon-primary rounded-full active:bg-hackathon-primary/60 flex items-center justify-center backdrop-blur-sm shadow-[0_0_10px_rgba(74,222,128,0.4)] text-xs"
                   onTouchStart={(e) => { e.preventDefault(); EventBus.emit('mobile-input', { key: 'up', state: true }); }}
                   onTouchEnd={(e) => { e.preventDefault(); EventBus.emit('mobile-input', { key: 'up', state: false }); }}
                   onMouseDown={(e) => { e.preventDefault(); EventBus.emit('mobile-input', { key: 'up', state: true }); }}

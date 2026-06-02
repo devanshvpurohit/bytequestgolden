@@ -771,8 +771,7 @@ export class Game extends Scene {
         const content = trigger.getData('content');
 
         // Key checks
-        const cursors = this.player.getCursors();
-        const downPressed = cursors.down.isDown || this.input.keyboard?.addKey(Phaser.Input.Keyboard.KeyCodes.S).isDown || this.input.keyboard?.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN).isDown;
+        const downPressed = this.player.isDownPressed();
 
         // Throttle
         const now = this.time.now;
@@ -831,7 +830,7 @@ export class Game extends Scene {
         const groundY = 768 - 32;
 
         // ── START ZONE (0 – 800) ──────────────────────────────
-        this.add.text(400, 220, '⚔️ CODE QUEST ⚔️', {
+        this.add.text(400, 220, '⚔️ BYTE QUEST ⚔️', {
             fontFamily: '"Press Start 2P"', fontSize: '28px', color: '#c084fc', align: 'center'
         }).setOrigin(0.5);
         this.add.text(400, 275, '← → MOVE  |  SPACE JUMP  |  SHIFT DASH', {
@@ -859,7 +858,7 @@ export class Game extends Scene {
         }).setOrigin(0.5);
 
         const aboutContent = [
-            "The Code Quest: Dungeon of Binary is the ultimate hackathon. Build the future.",
+            "Byte Quest: Dungeon of Binary is the ultimate hackathon. Build the future.",
             "Theme: Innovate to Elevate. Create solutions that matter.",
             "Everyone is welcome. Students, pros, and creatives."
         ];
@@ -1306,7 +1305,7 @@ export class Game extends Scene {
                     this.time.delayedCall(1500, () => {
                         this.bossText.setText('VICTORY!');
                         this.time.delayedCall(2000, () => {
-                            EventBus.emit('open-modal', { id: 'credits', title: 'GAME COMPLETED', content: 'You defeated The Glitch Overlord! The Code Quest: Dungeon of Binary journey begins here — register your team!' });
+                            EventBus.emit('open-modal', { id: 'credits', title: 'GAME COMPLETED', content: 'You defeated The Glitch Overlord! The Byte Quest: Dungeon of Binary journey begins here — register your team!' });
                             EventBus.emit('level-complete');
                         });
                     });
