@@ -1,0 +1,13 @@
+# Byte Quest: Dungeon of Binary - Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://bytequest.iare.ac.in/sitemap.xml
+
+# Crawl-delay (optional, adjust as needed)
+Crawl-delay: 1
+
+# Disallow common paths (if any)
+# Disallow: /api/
+# Disallow: /admin/

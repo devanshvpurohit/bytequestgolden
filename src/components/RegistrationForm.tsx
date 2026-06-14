@@ -62,7 +62,7 @@ export const RegistrationForm = ({ isCredits }: RegistrationFormProps) => {
               Prize Pool
             </p>
             <p className="text-lg text-hackathon-primary font-bold">
-              ₹1,20,000
+              ₹60,000
             </p>
           </div>
 
@@ -100,7 +100,7 @@ export const RegistrationForm = ({ isCredits }: RegistrationFormProps) => {
           <p className="text-[10px] text-gray-300 leading-relaxed mb-4">
             The dungeon doors are open July 17-18 at IARE. <br />
             <span className="text-hackathon-accent font-bold uppercase">
-              Registration: ₹799 per team
+              Registration: ₹349 per team
             </span>
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
@@ -124,48 +124,53 @@ export const RegistrationForm = ({ isCredits }: RegistrationFormProps) => {
 
   /* ──────── Standard variant (used in Website.tsx) ──────── */
   return (
-    <div className="flex flex-col gap-6 py-4">
-      <div className="bg-black/40 border-2 border-hackathon-primary/30 p-6 rounded-sm relative overflow-hidden">
-        {/* Decorative scanline effect */}
-        <div className="absolute inset-0 bg-scanlines opacity-10 pointer-events-none" />
+    <div className="flex flex-col gap-6 py-4 max-w-2xl mx-auto w-full">
+      <div className="pixel-card border-hackathon-primary/40 bg-black/40 relative overflow-hidden group">
+        <div className="absolute top-0 right-0 w-24 h-24 bg-hackathon-primary/10 rounded-full blur-2xl -mr-12 -mt-12 group-hover:bg-hackathon-primary/20 transition-colors" />
+        
+        <div className="flex items-center gap-4 mb-6">
+          <div className="w-12 h-12 bg-hackathon-primary/20 flex items-center justify-center border-2 border-hackathon-primary/40">
+            <span className="text-2xl animate-pulse">⚡</span>
+          </div>
+          <h3 className="text-xl md:text-3xl text-hackathon-primary glow-text uppercase font-bold tracking-tighter">
+            SYSTEM READY
+          </h3>
+        </div>
 
-        <h3 className="text-2xl text-hackathon-primary mb-4 glow-text">
-          SYSTEM READY
-        </h3>
-        <p className="text-sm text-gray-200 leading-relaxed mb-6">
-          Byte Quest: Dungeon of Binary is a 30-hour immersive hackathon
+        <p className="text-[10px] md:text-sm text-gray-300 leading-loose mb-8 font-orbitron">
+          Byte Quest: Dungeon of Binary is a 30-hour immersive quest
           hosted at IARE, Hyderabad. Join hundreds of student innovators for an
           unforgettable retro-themed coding adventure. Competing for a prize
           pool of{" "}
-          <span className="text-hackathon-accent font-bold">₹1,20,000</span>.
+          <span className="text-hackathon-accent font-bold glow-purple">₹60,000</span>.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-          <div className="border-l-2 border-hackathon-secondary pl-3">
-            <p className="text-[10px] text-hackathon-secondary uppercase tracking-widest">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+          <div className="border-l-4 border-hackathon-secondary pl-4 py-1 group/item hover:bg-white/5 transition-colors">
+            <p className="text-[8px] md:text-[10px] text-hackathon-secondary uppercase tracking-[0.2em] mb-1 font-bold">
               Date
             </p>
-            <p className="text-sm text-white">July 17-18, 2026</p>
+            <p className="text-xs md:text-base text-white font-orbitron font-bold">JULY 17-18, 2026</p>
           </div>
-          <div className="border-l-2 border-hackathon-accent pl-3">
-            <p className="text-[10px] text-hackathon-accent uppercase tracking-widest">
+          <div className="border-l-4 border-hackathon-accent pl-4 py-1 group/item hover:bg-white/5 transition-colors">
+            <p className="text-[8px] md:text-[10px] text-hackathon-accent uppercase tracking-[0.2em] mb-1 font-bold">
               Fee
             </p>
-            <p className="text-sm text-white">₹799 per Team</p>
+            <p className="text-xs md:text-base text-white font-orbitron font-bold">₹349 PER TEAM</p>
           </div>
         </div>
 
         <button
           onClick={handleRegister}
-          className="pixel-btn w-full bg-hackathon-primary text-black py-4 text-sm flex items-center justify-center gap-3 hover:scale-[1.02] transition-transform shadow-[0_0_20px_rgba(74,222,128,0.2)]"
+          className="pixel-btn w-full bg-hackathon-primary text-black py-4 md:py-5 text-[10px] md:text-xs flex items-center justify-center gap-4 hover:scale-[1.02] transition-all shadow-[0_0_25px_rgba(74,222,128,0.25)] pulse-glow"
         >
-          <span>🔗</span> REGISTER VIA OFFICIAL PORTAL
+          <span className="text-xl">⚔</span> REGISTER VIA OFFICIAL PORTAL
         </button>
       </div>
 
       <div className="text-center">
-        <p className="text-[10px] text-gray-500 uppercase tracking-[0.2em]">
-          Redirecting to iare.ac.in
+        <p className="text-[8px] md:text-[10px] text-gray-600 uppercase tracking-[0.3em] font-orbitron animate-pulse">
+          Secure redirection to iare.ac.in
         </p>
       </div>
     </div>

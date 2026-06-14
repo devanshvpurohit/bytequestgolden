@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { EventBus } from '../game/EventBus';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
@@ -13,15 +13,19 @@ interface ModalData {
 /* ───── Typewriter hook ───── */
 function useTypewriter(text: string, speed: number = 30) {
     const [displayed, setDisplayed] = useState('');
-    const indexRef = useRef(0);
+    const [prevText, setPrevText] = useState(text);
+
+    if (text !== prevText) {
+        setPrevText(text);
+        setDisplayed('');
+    }
 
     useEffect(() => {
-        setDisplayed('');
-        indexRef.current = 0;
+        let index = 0;
         const timer = setInterval(() => {
-            indexRef.current++;
-            setDisplayed(text.slice(0, indexRef.current));
-            if (indexRef.current >= text.length) clearInterval(timer);
+            index++;
+            setDisplayed(text.slice(0, index));
+            if (index >= text.length) clearInterval(timer);
         }, speed);
         return () => clearInterval(timer);
     }, [text, speed]);

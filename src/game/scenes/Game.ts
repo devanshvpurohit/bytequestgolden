@@ -80,7 +80,13 @@ export class Game extends Scene {
     }
 
     preload() {
-        // Player Sprite (12x16)
+        // Golden Knight Sprite Sheet
+        this.load.spritesheet('golden_knight', '/assets/golden_knight.png', {
+            frameWidth: 165,
+            frameHeight: 209,
+        });
+
+        // Player Sprite (12x16) - Keeping as backup
         this.generatePixelArt('player_placeholder', {
             '0': 0x000000, '1': 0x4ade80, '2': 0xffffff, '3': 0x1e1b4b, '4': 0x60a5fa
         }, [
@@ -276,6 +282,40 @@ export class Game extends Scene {
         const worldHeight = 768;
         this.physics.world.setBounds(0, 0, worldWidth, worldHeight);
 
+        // Create Golden Knight animations
+        if (!this.anims.exists('knight_idle')) {
+            this.anims.create({
+                key: 'knight_idle',
+                frames: this.anims.generateFrameNumbers('golden_knight', { start: 0, end: 1 }),
+                frameRate: 3,
+                repeat: -1
+            });
+        }
+        if (!this.anims.exists('knight_run')) {
+            this.anims.create({
+                key: 'knight_run',
+                frames: this.anims.generateFrameNumbers('golden_knight', { start: 0, end: 5 }),
+                frameRate: 10,
+                repeat: -1
+            });
+        }
+        if (!this.anims.exists('knight_jump')) {
+            this.anims.create({
+                key: 'knight_jump',
+                frames: this.anims.generateFrameNumbers('golden_knight', { start: 2, end: 3 }),
+                frameRate: 6,
+                repeat: 0
+            });
+        }
+        if (!this.anims.exists('knight_attack')) {
+            this.anims.create({
+                key: 'knight_attack',
+                frames: this.anims.generateFrameNumbers('golden_knight', { start: 4, end: 5 }),
+                frameRate: 12,
+                repeat: 0
+            });
+        }
+
         // Input management for Modals
         EventBus.on('modal-active', (active: boolean) => {
             this.inputActive = !active;
@@ -322,8 +362,10 @@ export class Game extends Scene {
             this.platforms.create(x + 32, groundY, 'ground_placeholder');
         }
 
-        // Setup the Player
-        this.player = new Player(this, 100, groundY - 100, 'player_placeholder');
+        // Setup the Player with Golden Knight
+        this.player = new Player(this, 100, groundY - 100, 'golden_knight');
+        this.player.setScale(0.3);
+        (this.player.body as Phaser.Physics.Arcade.Body).setSize(80, 180).setOffset(42, 30);
 
         // Follow player camera with smooth lerp
         this.cameras.main.startFollow(this.player, true, 0.08, 0.08);

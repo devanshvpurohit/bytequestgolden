@@ -159,11 +159,25 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             this.executeDash();
         }
 
-        // ── Tint while in air (slight blue) ──────────────
+        // ── Golden Knight animations and effects ──────────────
         if (!onGround && !this.isDashing) {
-            this.setTint(0xaaddff);
+            (this as any).play?.('knight_jump', true);
+            const isRising = this.body!.velocity.y < 0;
+            const frameIndex = isRising ? 0 : 1;
+            const currentAnim = (this as any).anims?.currentAnim;
+            if (currentAnim && currentAnim.key === 'knight_jump') {
+                const frame = currentAnim.frames?.[frameIndex];
+                if (frame) (this as any).anims?.setCurrentFrame(frame);
+            }
+            this.setTint(0xffe066); // golden shimmer in air
         } else if (!this.isDashing) {
             this.clearTint();
+            // Play run or idle animation
+            if (isLeft || isRight) {
+                (this as any).play?.('knight_run', true);
+            } else {
+                (this as any).play?.('knight_idle', true);
+            }
         }
     }
 
@@ -175,6 +189,12 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         
         if (attackDown && now > this.attackCooldown) {
             this.attackCooldown = now + this.ATTACK_COOLDOWN_MS;
+            // Play attack animation briefly
+            (this as any).play?.('knight_attack', true);
+            this.setTint(0xffd700); // gold flash
+            this.scene.time.delayedCall(220, () => {
+                if (this.active) this.clearTint();
+            });
             return true;
         }
         return false;
