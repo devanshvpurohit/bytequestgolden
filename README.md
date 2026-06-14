@@ -11,7 +11,7 @@ This project is more than just a landing page; it's an interactive journey. Part
 - **Venue**: IARE, Hyderabad
 - **Prize Pool**: ₹60,000
 - **Participants**: 280 – 480 Students (Teams of 1-4)
-- **Registration Fee**: ₹349 per Team
+- **Registration Fee**: ₹349 per head
 
 ## 🛠️ Tech Stack
 - **Game Engine**: Phaser 3

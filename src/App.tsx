@@ -318,7 +318,7 @@ function App() {
                           <div className="space-y-1 text-gray-300">
                             <p>📍 IARE, Hyderabad</p>
                             <p>📅 July 17-18, 2026</p>
-                            <p>🌐 Fee: ₹349 / team</p>
+                            <p>🌐 Fee: ₹349 / head</p>
                             <p>🏆 Prize: ₹60,000</p>
                           </div>
                           <div className="mt-3 pt-3 border-t border-white/10">

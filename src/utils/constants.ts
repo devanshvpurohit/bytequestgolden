@@ -8,7 +8,7 @@ export const EVENT_DETAILS = {
   venue: 'IARE, Hyderabad',
   fullVenue: 'Institute of Aeronautical Engineering, Hyderabad',
   prizePool: '₹60,000',
-  registrationFee: '₹349',
+  registrationFee: '₹349 per head',
   maxParticipants: 480,
   maxTeams: 120,
   teamSize: '1-4 members',

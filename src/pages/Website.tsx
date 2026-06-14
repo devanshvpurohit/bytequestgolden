@@ -502,7 +502,7 @@ export function Website() {
               <motion.div key="register" variants={stagger} initial="initial" animate="animate" exit="exit" className="space-y-12">
                 <motion.div variants={fadeUp} className="text-center">
                   <h2 className="text-4xl md:text-7xl text-hackathon-primary title-shimmer mb-4 uppercase">Enter the Dungeon</h2>
-                  <p className="text-hackathon-accent text-xs md:text-base tracking-[0.3em] uppercase mb-6 font-orbitron font-bold">Registration Fee: ₹349 per Team</p>
+                  <p className="text-hackathon-accent text-xs md:text-base tracking-[0.3em] uppercase mb-6 font-orbitron font-bold">Registration Fee: ₹349 per Head</p>
                   <div className="gradient-underline w-48 md:w-80 mx-auto rounded-full shadow-[0_0_20px_rgba(192,132,252,0.3)]" />
                 </motion.div>
 

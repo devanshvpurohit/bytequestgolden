@@ -100,7 +100,7 @@ export const RegistrationForm = ({ isCredits }: RegistrationFormProps) => {
           <p className="text-[10px] text-gray-300 leading-relaxed mb-4">
             The dungeon doors are open July 17-18 at IARE. <br />
             <span className="text-hackathon-accent font-bold uppercase">
-              Registration: ₹349 per team
+              Registration: ₹349 per head
             </span>
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
@@ -156,7 +156,7 @@ export const RegistrationForm = ({ isCredits }: RegistrationFormProps) => {
             <p className="text-[8px] md:text-[10px] text-hackathon-accent uppercase tracking-[0.2em] mb-1 font-bold">
               Fee
             </p>
-            <p className="text-xs md:text-base text-white font-orbitron font-bold">₹349 PER TEAM</p>
+            <p className="text-xs md:text-base text-white font-orbitron font-bold">₹349 PER HEAD</p>
           </div>
         </div>
 

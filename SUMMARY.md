@@ -287,7 +287,7 @@ The Byte Quest project is now:
 - **Date**: July 17-18, 2026
 - **Venue**: IARE, Hyderabad
 - **Prize Pool**: ₹60,000
-- **Registration**: ₹349 per team
+- **Registration**: ₹349 per head
 
 ---
 
