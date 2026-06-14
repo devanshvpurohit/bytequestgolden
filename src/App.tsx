@@ -5,9 +5,6 @@ import { OverlayModals } from './components/OverlayModals';
 import { EventBus } from './game/EventBus';
 import { Website } from './pages/Website';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GAME_CONTROLS, DETAIL_CARDS } from './utils/constants';
-import { analytics } from './utils/analytics';
-import { updatePageMetadata } from './utils/seo';
 
 /* ── Star seed (generated once, memoized for performance) ───────────────────────────── */
 const generateStars = () => Array.from({ length: 120 }, (_, i) => ({
@@ -28,7 +25,24 @@ const generateShootingStars = () => Array.from({ length: 5 }, (_, i) => ({
   delay: i * 3.5 + Math.random() * 2,
 }));
 
-// Details and controls now imported from constants
+// Details and controls restored to original inline format
+/* ── Detail cards (info grid) ──────────────────────────────── */
+const DETAILS = [
+  { icon: '🏆', label: 'PRIZES',   value: '₹60K',      color: '#fbbf24' },
+  { icon: '👥', label: 'TEAMS',    value: '1-4 MEMBERS', color: '#c084fc' },
+  { icon: '⏱️', label: 'DURATION', value: '30 HOURS',   color: '#60a5fa' },
+  { icon: '🗓️', label: 'DATE',    value: 'JUL 17-18',  color: '#4ade80' },
+];
+
+/* ── Controls ──────────────────────────────────────────────── */
+const CONTROLS = [
+  { key: 'A / ←', action: 'MOVE LEFT' },
+  { key: 'D / →', action: 'MOVE RIGHT' },
+  { key: 'SPACE',  action: 'JUMP' },
+  { key: 'SHIFT',  action: 'DASH' },
+  { key: 'F',      action: 'FIREBALL' },
+  { key: 'F×2 JUMP', action: 'DOUBLE JUMP' },
+];
 
 function App() {
   const phaserRef = useRef<IRefPhaserGame | null>(null);
@@ -45,11 +59,6 @@ function App() {
 
   const onActiveScene = useCallback((scene: Phaser.Scene) => {
     console.log('Scene started:', scene.scene.key);
-  }, []);
-
-  // SEO and Analytics
-  useEffect(() => {
-    updatePageMetadata();
   }, []);
 
   useEffect(() => {
@@ -80,18 +89,15 @@ function App() {
 
   const startGame = useCallback(() => {
     setIsGameRunning(true);
-    analytics.startGame();
   }, []);
 
   const goToWebsite = useCallback(() => {
     setShowWebsite(true);
-    analytics.viewPage('website');
   }, []);
 
   const backToStart = useCallback(() => {
     setShowWebsite(false);
     setIsGameRunning(false);
-    analytics.viewPage('home');
   }, []);
 
   return (
@@ -219,7 +225,7 @@ function App() {
                 transition={{ delay: 1.0 }}
                 className="grid grid-cols-2 md:grid-cols-4 gap-2.5 w-full mt-1"
               >
-                {DETAIL_CARDS.map((d, i) => (
+                {DETAILS.map((d, i) => (
                   <motion.div
                     key={d.label}
                     initial={{ opacity: 0, y: 16 }}
@@ -264,15 +270,10 @@ function App() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.45 }}
-                onClick={() => {
-                  setShowInstructions(v => !v);
-                  if (!showInstructions) analytics.viewInstructions();
-                }}
+                onClick={() => setShowInstructions(v => !v)}
                 className="text-[8px] md:text-[9px] text-hackathon-secondary hover:text-white transition-colors cursor-pointer underline underline-offset-4"
-                aria-expanded={showInstructions}
-                aria-controls="game-instructions"
               >
-                {showInstructions ? '▲ HIDE CONTROLS' : '▼ CONTROLS & INFO'}
+                {showInstructions ? '▲ HIDE INFO' : '▼ GAME INFO & RULES'}
               </motion.button>
 
               {/* — Instructions panel — */}
@@ -285,22 +286,31 @@ function App() {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden w-full"
                   >
-                    <div 
-                      id="game-instructions"
-                      className="glass-panel border border-white/10 text-left text-[8px] md:text-[9px] leading-loose p-4 w-full"
-                      role="region"
-                      aria-label="Game controls and information"
-                    >
+                    <div className="glass-panel border border-white/10 text-left text-[8px] md:text-[9px] leading-loose p-4 w-full">
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <p className="text-hackathon-primary mb-2 text-[9px] uppercase tracking-wider">⌨ Controls</p>
+                          <p className="text-hackathon-primary mb-2 text-[10px]">⌨️ CONTROLS</p>
                           <div className="space-y-1">
-                            {GAME_CONTROLS.map(c => (
-                              <div key={c.key} className="flex justify-between gap-4">
-                                <span className="text-hackathon-gold font-bold">{c.key}</span>
-                                <span className="text-gray-300">{c.action}</span>
-                              </div>
-                            ))}
+                            <div className="flex justify-between">
+                              <span className="text-hackathon-secondary">MOVE</span>
+                              <span>← → or A D</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-hackathon-secondary">JUMP</span>
+                              <span>SPACE</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-hackathon-secondary">DASH</span>
+                              <span>SHIFT</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-hackathon-secondary">ATTACK</span>
+                              <span>F</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-hackathon-secondary">INTERACT</span>
+                              <span>↓ S (on pipes)</span>
+                            </div>
                           </div>
                         </div>
                         <div>
