@@ -34,16 +34,6 @@ const DETAILS = [
   { icon: '🗓️', label: 'DATE',    value: 'JUL 17-18',  color: '#4ade80' },
 ];
 
-/* ── Controls ──────────────────────────────────────────────── */
-const CONTROLS = [
-  { key: 'A / ←', action: 'MOVE LEFT' },
-  { key: 'D / →', action: 'MOVE RIGHT' },
-  { key: 'SPACE',  action: 'JUMP' },
-  { key: 'SHIFT',  action: 'DASH' },
-  { key: 'F',      action: 'FIREBALL' },
-  { key: 'F×2 JUMP', action: 'DOUBLE JUMP' },
-];
-
 function App() {
   const phaserRef = useRef<IRefPhaserGame | null>(null);
   const [isGameRunning, setIsGameRunning]     = useState(false);
