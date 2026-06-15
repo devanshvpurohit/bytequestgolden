@@ -165,7 +165,7 @@ export function Website() {
                   </h3>
                   <div className="space-y-4 text-gray-300 leading-relaxed text-[10px] md:text-sm max-w-3xl">
                     <p>
-                      <span className="text-white font-bold">Byte Quest 2026</span> is the flagship national-level innovation hackathon hosted by the <span className="text-hackathon-accent font-bold">Entrepreneurship Cell</span> of the <span className="text-white font-bold">Institute of Aeronautical Engineering</span>.
+                      <span className="text-white font-bold">Byte Quest 2026</span> is the flagship national-level innovation hackathon hosted by the <span className="text-hackathon-accent font-bold">Entrepreneurship Cell & Genbot</span> of the <span className="text-white font-bold">Institute of Aeronautical Engineering</span>.
                     </p>
                     <p>
                       Inspired by retro gaming adventures and digital exploration, Byte Quest challenges <span className="text-hackathon-primary font-bold">280+ participants</span> to solve real-world problems through innovation, collaboration, and technology.

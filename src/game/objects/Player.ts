@@ -49,6 +49,9 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     // ── Visual ────────────────────────────────────────────
     private trailTimer: Phaser.Time.TimerEvent | null = null;
+    private targetRotation: number = 0;
+    private targetScaleX: number = 0.3;
+    private targetScaleY: number = 0.3;
 
     constructor(scene: Phaser.Scene, x: number, y: number, texture: string) {
         super(scene, x, y, texture);
@@ -58,6 +61,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.setCollideWorldBounds(true);
         this.setDragX(this.DRAG);
         this.setMaxVelocity(this.SPEED, 1200);
+        this.setScale(0.3);
 
         if (scene.input.keyboard) {
             this.cursors  = scene.input.keyboard.createCursorKeys();
@@ -98,20 +102,41 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         if (onGround && !this.onGroundPrev) {
             this.jumpsLeft = 2;
             this.coyoteTime = now + this.COYOTE_MS;
+            // Land squash
+            this.targetScaleX = 0.38;
+            this.targetScaleY = 0.22;
+            this.scene.time.delayedCall(100, () => {
+                this.targetScaleX = 0.3;
+                this.targetScaleY = 0.3;
+            });
         }
         if (onGround) this.coyoteTime = now + this.COYOTE_MS;
         this.onGroundPrev = onGround;
 
         // Skip movement override while dashing
-        if (this.isDashing) return;
+        if (this.isDashing) {
+            this.applyVisualLerp();
+            return;
+        }
 
         // ── Horizontal movement ──────────────────────────
         const isLeft  = this.cursors.left.isDown  || this.wasdKeys.left.isDown || this.mInput.left;
         const isRight = this.cursors.right.isDown || this.wasdKeys.right.isDown || this.mInput.right;
 
-        if (isLeft)       { this.setAccelerationX(-this.ACCEL); this.setFlipX(true);  }
-        else if (isRight) { this.setAccelerationX(this.ACCEL);  this.setFlipX(false); }
-        else              { this.setAccelerationX(0); }
+        if (isLeft)       { 
+            this.setAccelerationX(-this.ACCEL); 
+            this.setFlipX(true);
+            this.targetRotation = -0.15;
+        }
+        else if (isRight) { 
+            this.setAccelerationX(this.ACCEL);  
+            this.setFlipX(false); 
+            this.targetRotation = 0.15;
+        }
+        else { 
+            this.setAccelerationX(0); 
+            this.targetRotation = 0;
+        }
 
         // ── Jump ─────────────────────────────────────────
         const jumpJustDown = Phaser.Input.Keyboard.JustDown(this.cursors.up)   ||
@@ -137,13 +162,24 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                 this.coyoteTime  = 0;
                 this.jumpsLeft   = 1;
                 this.spawnJumpPuff();
+                // Jump stretch
+                this.targetScaleX = 0.22;
+                this.targetScaleY = 0.38;
             } else if (this.jumpsLeft > 0) {
                 // Double jump
                 this.setVelocityY(this.JUMP_FORCE * 0.85);
                 this.jumpBuffer = 0;
                 this.jumpsLeft--;
                 this.spawnDoubleJumpEffect();
+                // Double jump stretch
+                this.targetScaleX = 0.2;
+                this.targetScaleY = 0.4;
             }
+        }
+
+        if (this.targetScaleY > 0.3) {
+            this.targetScaleY -= 0.005;
+            this.targetScaleX += 0.005;
         }
 
         // Variable jump (cut height if released early)
@@ -170,6 +206,8 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                 if (frame) (this as any).anims?.setCurrentFrame(frame);
             }
             this.setTint(0xffe066); // golden shimmer in air
+            // Tilt based on vertical velocity
+            this.targetRotation = this.body!.velocity.y * 0.0005;
         } else if (!this.isDashing) {
             this.clearTint();
             // Play run or idle animation
@@ -179,6 +217,17 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                 (this as any).play?.('knight_idle', true);
             }
         }
+
+        this.applyVisualLerp();
+    }
+
+    private applyVisualLerp() {
+        // Smooth rotation
+        this.rotation = Phaser.Math.Linear(this.rotation, this.targetRotation, 0.2);
+        
+        // Smooth scale (Squash & Stretch)
+        this.scaleX = Phaser.Math.Linear(this.scaleX, this.targetScaleX, 0.2);
+        this.scaleY = Phaser.Math.Linear(this.scaleY, this.targetScaleY, 0.2);
     }
 
     // Called by Game scene to check F key outside Player.update()

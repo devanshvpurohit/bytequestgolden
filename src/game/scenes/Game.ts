@@ -86,6 +86,9 @@ export class Game extends Scene {
             frameHeight: 209,
         });
 
+        // Genbot
+        this.load.image('genbot', '/assets/logo_robot.png');
+
         // Player Sprite (12x16) - Keeping as backup
         this.generatePixelArt('player_placeholder', {
             '0': 0x000000, '1': 0x4ade80, '2': 0xffffff, '3': 0x1e1b4b, '4': 0x60a5fa
@@ -772,6 +775,38 @@ export class Game extends Scene {
         }
     }
 
+    spawnRegistrationEnemy(x: number) {
+        const enemy = this.enemies.create(x, 680, 'enemy') as Phaser.Physics.Arcade.Sprite;
+        enemy.setBounce(0);
+        enemy.setCollideWorldBounds(true);
+        enemy.setTint(0x60a5fa); // blue tint for special enemy
+        (enemy.body as Phaser.Physics.Arcade.Body).setSize(40, 40);
+        
+        // Floating text above enemy
+        const text = this.add.text(x, 620, 'REGISTRATION:\n18/6/2026', {
+            fontFamily: '"Press Start 2P"', fontSize: '8px', color: '#ffffff',
+            align: 'center', stroke: '#000', strokeThickness: 2
+        }).setOrigin(0.5);
+
+        // Update text position to follow enemy
+        this.time.addEvent({
+            delay: 16,
+            loop: true,
+            callback: () => {
+                if (enemy.active) {
+                    text.setPosition(enemy.x, enemy.y - 50);
+                } else {
+                    text.destroy();
+                }
+            }
+        });
+
+        // Patrol logic
+        enemy.setData('patrolLeft', x - 50);
+        enemy.setData('patrolRight', x + 50);
+        enemy.setVelocityX(40);
+    }
+
     spawnEnemy(x: number, patrolLeft: number, patrolRight: number) {
         const enemy = this.enemies.create(x, 680, 'enemy') as Phaser.Physics.Arcade.Sprite;
         enemy.setBounce(0);
@@ -872,8 +907,11 @@ export class Game extends Scene {
         const groundY = 768 - 32;
 
         // ── START ZONE (0 – 800) ──────────────────────────────
-        this.add.text(400, 220, '⚔️ BYTE QUEST ⚔️', {
-            fontFamily: '"Press Start 2P"', fontSize: '28px', color: '#c084fc', align: 'center'
+        this.add.text(400, 180, '⚔️ BYTE QUEST 2026 ⚔️', {
+            fontFamily: '"Press Start 2P"', fontSize: '32px', color: '#c084fc', align: 'center'
+        }).setOrigin(0.5);
+        this.add.text(400, 220, '📅 JULY 17-18, 2026', {
+            fontFamily: '"Press Start 2P"', fontSize: '14px', color: '#4ade80', align: 'center'
         }).setOrigin(0.5);
         this.add.text(400, 275, '← → MOVE  |  SPACE JUMP  |  SHIFT DASH', {
             fontFamily: '"Press Start 2P"', fontSize: '10px', color: '#60a5fa', align: 'center'
@@ -890,19 +928,22 @@ export class Game extends Scene {
         this.spawnEnemy(600, 500, 750);
 
         // ====== Zone 1: About (1000 - 2000) ======
-        this.add.text(1200, 280, '🏰 ZONE 1: THE ANCIENT HALLS 🏰', {
+        this.add.text(1200, 240, '🏰 ZONE 1: THE ANCIENT HALLS 🏰', {
             fontFamily: '"Press Start 2P"', fontSize: '20px', color: '#4ade80', align: 'center'
         }).setOrigin(0.5);
+        this.add.text(1200, 280, 'BY E-CELL & GENBOT', {
+            fontFamily: '"Press Start 2P"', fontSize: '10px', color: '#60a5fa', align: 'center'
+        }).setOrigin(0.5);
         // Action instruction sign
-        this.add.text(1200, 320, '[ JUMP \u2191 HIT ? BLOCKS FROM BELOW ]', {
+        this.add.text(1200, 320, '[ JUMP ↑ HIT ? BLOCKS FROM BELOW ]', {
             fontFamily: '"Press Start 2P"', fontSize: '10px', color: '#fbbf24',
-            backgroundColor: '#fef08a', padding: { x: 8, y: 4 }, align: 'center'
+            backgroundColor: '#000000', padding: { x: 8, y: 4 }, align: 'center'
         }).setOrigin(0.5);
 
         const aboutContent = [
-            "Byte Quest: Dungeon of Binary is the ultimate hackathon. Build the future.",
-            "Theme: Innovate to Elevate. Create solutions that matter.",
-            "Everyone is welcome. Students, pros, and creatives."
+            "Byte Quest 2026: Dungeon of Binary. National-level innovation hackathon.",
+            "July 17-18, 2026 at IARE, Hyderabad. 30 Hours of intense hacking.",
+            "Prize Pool: ₹60,000. 280+ Participants. Join the quest!"
         ];
 
         for (let i = 0; i < 3; i++) {
@@ -919,7 +960,7 @@ export class Game extends Scene {
 
             // Small arrow hint on FIRST block only
             if (i === 0) {
-                const hint = this.add.text(block.x, block.y + 50, '\u2191 JUMP', {
+                const hint = this.add.text(block.x, block.y + 50, '↑ JUMP', {
                     fontFamily: '"Press Start 2P"', fontSize: '8px', color: '#ef4444',
                     align: 'center'
                 }).setOrigin(0.5);
@@ -931,22 +972,29 @@ export class Game extends Scene {
         this.spawnEnemy(1400, 1300, 1500);
         this.spawnEnemy(1700, 1600, 1900);
 
-        // Elevated platforms with coins on top
-        this.platforms.create(1800, 550, 'ground_placeholder');
-        this.platforms.create(1864, 550, 'ground_placeholder');
-        this.spawnCoins(1780, 480, 3);
+        // Registration Enemy (between Zone 1 and Zone 2)
+        this.spawnRegistrationEnemy(2100);
 
         // ====== Zone 2: Schedule (2200 - 3200) ======
-        this.add.text(2500, 280, '🌙 ZONE 2: THE SHADOW PIPES 🌙', {
-            fontFamily: '"Press Start 2P"', fontSize: '20px', color: '#4ade80', align: 'center'
+        this.add.text(2500, 240, '🌙 ZONE 2: THE SHADOW PIPES 🌙', {
+            fontFamily: '"Press Start 2P"', fontSize: '20px', color: '#c084fc', align: 'center'
+        }).setOrigin(0.5);
+        this.add.text(2500, 280, 'JULY 17 - 18, 2026', {
+            fontFamily: '"Press Start 2P"', fontSize: '12px', color: '#fbbf24', align: 'center'
         }).setOrigin(0.5);
         // Action instruction sign
-        this.add.text(2500, 320, '[ PRESS \u2193 ON PIPES TO READ ]', {
+        this.add.text(2500, 320, '[ PRESS ↓ ON PIPES TO READ ]', {
             fontFamily: '"Press Start 2P"', fontSize: '10px', color: '#fbbf24',
             backgroundColor: '#1a0033', padding: { x: 8, y: 4 }, align: 'center'
         }).setOrigin(0.5);
 
-        const scheduleContent = ['Registration', 'Opening Ceremony', 'Hacking Time', 'Judging', 'Demo Day'];
+        const scheduleContent = [
+            'Day 1 - July 17, 8:00 AM: Registration & Check-In. Get your gear ready!',
+            'Day 1 - July 17, 12:00 PM: 🚀 Hacking Begins! 30h clock starts now.',
+            'Day 1 - July 17, 8:00 PM: Dinner & Overnight Hacking. The grind continues.',
+            'Day 2 - July 18, 12:00 PM: 🔴 Code Freeze. Submission deadline.',
+            'Day 2 - July 18, 2:00 PM: 🏆 Closing Ceremony & Awards. Who wins?'
+        ];
         for (let i = 0; i < 5; i++) {
             const pipeX = 2300 + (i * 200);
             const height = i < 3 ? i : 4 - i;
@@ -968,7 +1016,7 @@ export class Game extends Scene {
 
             // Small arrow hint on FIRST pipe only
             if (i === 0) {
-                const hint = this.add.text(pipeX, pipeY - 40, '\u2193 PRESS', {
+                const hint = this.add.text(pipeX, pipeY - 40, '↓ PRESS', {
                     fontFamily: '"Press Start 2P"', fontSize: '8px', color: '#ef4444',
                     align: 'center'
                 }).setOrigin(0.5);
@@ -981,28 +1029,32 @@ export class Game extends Scene {
         this.spawnEnemy(2850, 2750, 2950);
 
         // ====== Zone 3: Tracks (3500 - 4500) ======
-        this.add.text(4000, 180, '✨ ZONE 3: THE CRYSTAL REALM ✨', {
-            fontFamily: '"Press Start 2P"', fontSize: '20px', color: '#4ade80', align: 'center'
+        this.add.text(4000, 180, '✨ ZONE 3: CHALLENGE THEMES ✨', {
+            fontFamily: '"Press Start 2P"', fontSize: '20px', color: '#60a5fa', align: 'center'
         }).setOrigin(0.5);
-        // Action instruction sign
-        this.add.text(4000, 220, '[ PRESS \u2193 ON PLATFORMS TO READ ]', {
-            fontFamily: '"Press Start 2P"', fontSize: '10px', color: '#fbbf24',
-            backgroundColor: '#1a0033', padding: { x: 8, y: 4 }, align: 'center'
+        this.add.text(4000, 220, 'MATCHING THE MAIN QUEST', {
+            fontFamily: '"Press Start 2P"', fontSize: '10px', color: '#fbbf24', align: 'center'
         }).setOrigin(0.5);
 
-        const tracksContent = ['🤖 AI Track', '🌐 Web Track', '🌱 Sustainability', '🚀 Open Innovation'];
+        const tracksContent = [
+            '🤖 AI & Machine Learning: Unlock potential to transform society through data-driven technology.',
+            '🔌 IoT (Internet of Things): Develop innovative connected device ecosystems.',
+            '🎮 Gamify: Design interactive solutions that incorporate gamification principles.',
+            '⛓️ Web 3.0: Build decentralized solutions that empower individuals through blockchain.'
+        ];
+        const trackColors = [0x60a5fa, 0xc084fc, 0x4ade80, 0xfbbf24];
 
         const wPoints = [
             { x: 3600, y: 500, contentIdx: 0 },
-            { x: 3800, y: 650, contentIdx: 1 },
-            { x: 4000, y: 500, contentIdx: 2 },
-            { x: 4200, y: 650, contentIdx: 3 },
-            { x: 4400, y: 500, contentIdx: 0 }
+            { x: 3850, y: 650, contentIdx: 1 },
+            { x: 4100, y: 500, contentIdx: 2 },
+            { x: 4350, y: 650, contentIdx: 3 }
         ];
 
         wPoints.forEach((p, i) => {
             const platform = this.platforms.create(p.x, p.y, 'ground_placeholder');
             platform.setScale(1.5);
+            platform.setTint(trackColors[i]);
             platform.refreshBody();
 
             const trigger = this.triggers.create(p.x, p.y, 'qblock_placeholder');
@@ -1011,15 +1063,15 @@ export class Game extends Scene {
             trigger.setVisible(false);
             trigger.setData('type', 'trackblock');
             trigger.setData('modalId', 'track-' + i);
-            trigger.setData('title', 'HACKATHON TRACK');
-            trigger.setData('content', tracksContent[p.contentIdx] || tracksContent[0]);
+            trigger.setData('title', 'QUEST THEME');
+            trigger.setData('content', tracksContent[p.contentIdx]);
 
             // Coins ABOVE each W-platform
             this.spawnCoins(p.x - 25, p.y - 100, 3);
 
             // Small arrow hint on FIRST platform only
             if (i === 0) {
-                const hint = this.add.text(p.x, p.y - 40, '\u2193 PRESS', {
+                const hint = this.add.text(p.x, p.y - 40, '↓ PRESS', {
                     fontFamily: '"Press Start 2P"', fontSize: '8px', color: '#ef4444',
                     align: 'center'
                 }).setOrigin(0.5);

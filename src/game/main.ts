@@ -22,6 +22,10 @@ const config: Phaser.Types.Core.GameConfig = {
             debug: false
         }
     },
+    render: {
+        pixelArt: true,
+        antialias: false,
+    },
     scene: [
         Game
     ]
