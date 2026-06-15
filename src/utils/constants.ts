@@ -1,6 +1,6 @@
 // Event Details Constants
 export const EVENT_DETAILS = {
-  name: 'Byte Quest: Dungeon of Binary',
+  name: 'Byte Quest 2026',
   shortName: 'Byte Quest',
   tagline: 'Dungeon of Binary',
   date: 'July 17-18, 2026',
@@ -8,11 +8,11 @@ export const EVENT_DETAILS = {
   venue: 'IARE, Hyderabad',
   fullVenue: 'Institute of Aeronautical Engineering, Hyderabad',
   prizePool: '₹60,000',
-  registrationFee: '₹349 per head',
-  maxParticipants: 480,
-  maxTeams: 120,
+  registrationFee: '₹350 per head',
+  maxParticipants: 280,
   teamSize: '1-4 members',
   registrationUrl: 'https://iare.ac.in',
+  organizer: 'Entrepreneurship Cell (E-Cell), IARE',
 } as const;
 
 // Contact Information
@@ -106,10 +106,10 @@ export const GAME_CONTROLS = [
 
 // Detail Cards
 export const DETAIL_CARDS = [
-  { icon: '🏆', label: 'PRIZES', value: '₹60K', color: '#fbbf24' },
-  { icon: '👥', label: 'TEAMS', value: '1-4 MEMBERS', color: '#c084fc' },
+  { icon: '🏆', label: 'PRIZE POOL', value: '₹60,000', color: '#fbbf24' },
+  { icon: '👥', label: 'PARTICIPANTS', value: '280+', color: '#c084fc' },
   { icon: '⏱️', label: 'DURATION', value: '30 HOURS', color: '#60a5fa' },
-  { icon: '🗓️', label: 'DATE', value: 'JUL 17-18', color: '#4ade80' },
+  { icon: '💰', label: 'FEE', value: '₹350/HEAD', color: '#4ade80' },
 ] as const;
 
 // Color Palette

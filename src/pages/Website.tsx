@@ -136,7 +136,7 @@ export function Website() {
                   <div className="inline-block px-3 py-1 bg-hackathon-primary/10 border border-hackathon-primary/30 text-hackathon-primary text-[8px] md:text-[10px] mb-4 tracking-[0.2em] uppercase badge-pulse">
                     IARE'S PREMIER HACKATHON
                   </div>
-                  <h2 className="text-4xl md:text-7xl text-hackathon-primary title-shimmer mb-4 uppercase leading-tight">Byte Quest</h2>
+                  <h2 className="text-4xl md:text-7xl text-hackathon-primary title-shimmer mb-4 uppercase leading-tight">Byte Quest 2026</h2>
                   <p className="text-hackathon-accent text-xs md:text-base tracking-[0.4em] uppercase mb-6 font-orbitron font-bold">Dungeon of Binary</p>
                   <div className="gradient-underline w-48 md:w-80 mx-auto rounded-full shadow-[0_0_15px_rgba(74,222,128,0.3)]" />
                 </motion.div>
@@ -147,7 +147,7 @@ export function Website() {
                     { emoji: '📅', label: 'Date',       value: 'July 17-18, 2026',   color: 'border-hackathon-secondary/40', glow: 'shadow-[0_0_15px_rgba(96,165,250,0.15)]' },
                     { emoji: '⏱️', label: 'Duration',   value: '30 Hours',            color: 'border-hackathon-accent/40',    glow: 'shadow-[0_0_15px_rgba(192,132,252,0.15)]' },
                     { emoji: '🏆', label: 'Prize Pool', value: '₹60,000',             color: 'border-hackathon-gold/40',      glow: 'shadow-[0_0_15px_rgba(251,191,36,0.15)]' },
-                    { emoji: '📍', label: 'Venue',      value: 'IARE, Hyderabad',     color: 'border-hackathon-primary/40',   glow: 'shadow-[0_0_15px_rgba(74,222,128,0.15)]' },
+                    { emoji: '👥', label: 'Participants', value: '280+',              color: 'border-hackathon-primary/40',   glow: 'shadow-[0_0_15px_rgba(74,222,128,0.15)]' },
                   ].map(s => (
                     <div key={s.label} className={`pixel-card text-center flex flex-col items-center justify-center p-4 md:p-6 group ${s.glow}`}>
                       <div className="text-4xl md:text-5xl mb-3 group-hover:scale-110 transition-transform duration-300">{s.emoji}</div>
@@ -165,13 +165,16 @@ export function Website() {
                   </h3>
                   <div className="space-y-4 text-gray-300 leading-relaxed text-[10px] md:text-sm max-w-3xl">
                     <p>
-                      Welcome to Hyderabad's most exciting monsoon hackathon — <span className="text-white font-bold">Byte Quest: Dungeon of Binary</span>!
-                      This dynamic 30-hour quest is hosted at the Institute of Aeronautical Engineering (IARE),
-                      bringing together student innovators in an immersive, project-based coding adventure.
+                      <span className="text-white font-bold">Byte Quest 2026</span> is the flagship national-level innovation hackathon hosted by the <span className="text-hackathon-accent font-bold">Entrepreneurship Cell</span> of the <span className="text-white font-bold">Institute of Aeronautical Engineering</span>.
                     </p>
                     <p>
-                      Our mission: <span className="text-hackathon-accent font-bold">fuel innovation</span>, cultivate teamwork, and challenge young developers to push
-                      the boundaries of what they can create across <span className="text-hackathon-secondary font-bold">AI, IoT, Web3</span>, and beyond.
+                      Inspired by retro gaming adventures and digital exploration, Byte Quest challenges <span className="text-hackathon-primary font-bold">280+ participants</span> to solve real-world problems through innovation, collaboration, and technology.
+                    </p>
+                    <p>
+                      Over <span className="text-hackathon-secondary font-bold">30 intense hours</span>, participants will ideate, build, test, and present solutions while working alongside talented peers and receiving mentorship from industry professionals.
+                    </p>
+                    <p>
+                      Byte Quest is more than a competition—it's a <span className="text-hackathon-accent font-bold">launchpad for future innovators</span>, where students develop practical technical skills, explore emerging technologies, gain startup ecosystem exposure, and build impactful real-world solutions.
                     </p>
                   </div>
                 </motion.div>
@@ -502,7 +505,7 @@ export function Website() {
               <motion.div key="register" variants={stagger} initial="initial" animate="animate" exit="exit" className="space-y-12">
                 <motion.div variants={fadeUp} className="text-center">
                   <h2 className="text-4xl md:text-7xl text-hackathon-primary title-shimmer mb-4 uppercase">Enter the Dungeon</h2>
-                  <p className="text-hackathon-accent text-xs md:text-base tracking-[0.3em] uppercase mb-6 font-orbitron font-bold">Registration Fee: ₹349 per Head</p>
+                  <p className="text-hackathon-accent text-xs md:text-base tracking-[0.3em] uppercase mb-6 font-orbitron font-bold">Registration Fee: ₹350 per Head</p>
                   <div className="gradient-underline w-48 md:w-80 mx-auto rounded-full shadow-[0_0_20px_rgba(192,132,252,0.3)]" />
                 </motion.div>
 

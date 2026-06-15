@@ -180,7 +180,7 @@ npm run build
 - **📍 Venue**: IARE, Hyderabad
 - **🏆 Prize Pool**: ₹60,000
 - **👥 Team Size**: 1-4 members
-- **💰 Registration**: ₹349 per head
+- **💰 Registration**: ₹350 per head
 
 ## 🤝 Contributing
 

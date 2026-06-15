@@ -28,10 +28,10 @@ const generateShootingStars = () => Array.from({ length: 5 }, (_, i) => ({
 // Details and controls restored to original inline format
 /* ── Detail cards (info grid) ──────────────────────────────── */
 const DETAILS = [
-  { icon: '🏆', label: 'PRIZES',   value: '₹60K',      color: '#fbbf24' },
-  { icon: '👥', label: 'TEAMS',    value: '1-4 MEMBERS', color: '#c084fc' },
+  { icon: '🏆', label: 'PRIZE POOL',   value: '₹60,000',      color: '#fbbf24' },
+  { icon: '👥', label: 'PARTICIPANTS', value: '280+', color: '#c084fc' },
   { icon: '⏱️', label: 'DURATION', value: '30 HOURS',   color: '#60a5fa' },
-  { icon: '🗓️', label: 'DATE',    value: 'JUL 17-18',  color: '#4ade80' },
+  { icon: '💰', label: 'FEE',    value: '₹350/HEAD',  color: '#4ade80' },
 ];
 
 function App() {
@@ -173,7 +173,7 @@ function App() {
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-pixel leading-none uppercase">
                   <span className="title-shimmer">BYTE</span>
                   <br />
-                  <span className="title-shimmer" style={{ animationDelay: '0.5s' }}>QUEST</span>
+                  <span className="title-shimmer" style={{ animationDelay: '0.5s' }}>QUEST 2026</span>
                 </h1>
                 <div className="gradient-underline w-56 md:w-80 mt-4 rounded-full" />
               </motion.div>
@@ -201,11 +201,13 @@ function App() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.85 }}
-                className="text-[9px] md:text-[11px] text-gray-400 max-w-lg leading-loose"
+                className="text-[9px] md:text-[11px] text-gray-400 max-w-lg leading-loose text-center"
               >
-                30-hour hackathon at IARE, Hyderabad · July 17-18, 2026
+                A 30-hour national-level hackathon where innovators, developers, and entrepreneurs
                 <br />
-                Fight the Glitch Overlord · Register your team · Win big
+                come together to build solutions that shape the future
+                <br />
+                📍 IARE, Hyderabad · July 17-18, 2026 · 280+ Participants
               </motion.p>
 
               {/* — Info Cards — */}
@@ -308,8 +310,9 @@ function App() {
                           <div className="space-y-1 text-gray-300">
                             <p>📍 IARE, Hyderabad</p>
                             <p>📅 July 17-18, 2026</p>
-                            <p>🌐 Fee: ₹349 / head</p>
-                            <p>🏆 Prize: ₹60,000</p>
+                            <p>💰 Fee: ₹350 / head</p>
+                            <p>🏆 Prize Pool: ₹60,000</p>
+                            <p>👥 280+ Participants</p>
                           </div>
                           <div className="mt-3 pt-3 border-t border-white/10">
                             <p className="text-hackathon-primary mb-1 text-[8px] uppercase">💡 Tips</p>
