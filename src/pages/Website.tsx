@@ -142,11 +142,10 @@ export function Website() {
                 </motion.div>
 
                 {/* Stats row */}
-                <motion.div variants={fadeUp} className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <motion.div variants={fadeUp} className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                   {[
                     { emoji: '📅', label: 'Date',       value: 'July 17-18, 2026',   color: 'border-hackathon-secondary/40', glow: 'shadow-[0_0_15px_rgba(96,165,250,0.15)]' },
                     { emoji: '⏱️', label: 'Duration',   value: '30 Hours',            color: 'border-hackathon-accent/40',    glow: 'shadow-[0_0_15px_rgba(192,132,252,0.15)]' },
-                    { emoji: '🏆', label: 'Prize Pool', value: '₹60,000',             color: 'border-hackathon-gold/40',      glow: 'shadow-[0_0_15px_rgba(251,191,36,0.15)]' },
                     { emoji: '👥', label: 'Participants', value: '280+',              color: 'border-hackathon-primary/40',   glow: 'shadow-[0_0_15px_rgba(74,222,128,0.15)]' },
                   ].map(s => (
                     <div key={s.label} className={`pixel-card text-center flex flex-col items-center justify-center p-4 md:p-6 group ${s.glow}`}>
@@ -274,9 +273,9 @@ export function Website() {
                       tags: ['Game Design', 'UX', 'Engagement'],
                     },
                     {
-                      icon: '⛓️', title: 'Web 3.0', color: '#fbbf24',
-                      desc: 'Build decentralized solutions that empower individuals, enhance transparency, and redefine digital ownership through blockchain and distributed technologies.',
-                      tags: ['Blockchain', 'DeFi', 'NFT', 'DAO'],
+                      icon: '🔒', title: 'Cybersecurity', color: '#fbbf24',
+                      desc: 'Build secure and resilient digital solutions that protect systems, data, and users across modern applications.',
+                      tags: ['Security', 'Privacy', 'Risk', 'Defense'],
                     },
                   ].map(theme => (
                     <motion.div

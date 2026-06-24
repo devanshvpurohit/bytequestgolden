@@ -943,7 +943,6 @@ export class Game extends Scene {
         const aboutContent = [
             "Byte Quest 2026: Dungeon of Binary. National-level innovation hackathon.",
             "July 17-18, 2026 at IARE, Hyderabad. 30 Hours of intense hacking.",
-            "Prize Pool: ₹60,000. 280+ Participants. Join the quest!"
         ];
 
         for (let i = 0; i < 3; i++) {
@@ -1040,7 +1039,7 @@ export class Game extends Scene {
             '🤖 AI & Machine Learning: Unlock potential to transform society through data-driven technology.',
             '🔌 IoT (Internet of Things): Develop innovative connected device ecosystems.',
             '🎮 Gamify: Design interactive solutions that incorporate gamification principles.',
-            '⛓️ Web 3.0: Build decentralized solutions that empower individuals through blockchain.'
+            '🔒 Cybersecurity: Build secure and resilient digital solutions.'
         ];
         const trackColors = [0x60a5fa, 0xc084fc, 0x4ade80, 0xfbbf24];
 

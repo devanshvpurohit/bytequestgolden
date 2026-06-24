@@ -54,11 +54,11 @@ export const THEMES = [
     tags: ['Game Design', 'UX', 'Engagement'],
   },
   {
-    icon: '⛓️',
-    title: 'Web 3.0',
+    icon: '🔒',
+    title: 'Cybersecurity',
     color: '#fbbf24',
-    desc: 'Build decentralized solutions that empower individuals, enhance transparency, and redefine digital ownership through blockchain and distributed technologies.',
-    tags: ['Blockchain', 'DeFi', 'NFT', 'DAO'],
+    desc: 'Build secure and resilient digital solutions that protect systems, data, and users across modern applications.',
+    tags: ['Security', 'Privacy', 'Risk', 'Defense'],
   },
 ] as const;
 

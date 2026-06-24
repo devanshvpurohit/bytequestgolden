@@ -21,7 +21,7 @@ export const DEFAULT_SEO: SEOMetadata = {
     '2026',
     'AI',
     'IoT',
-    'Web3',
+    'Cybersecurity',
     'gaming',
     'student hackathon',
     'programming contest',

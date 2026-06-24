@@ -59,15 +59,6 @@ export const RegistrationForm = ({ isCredits }: RegistrationFormProps) => {
 
           <div className="flex flex-col gap-2">
             <p className="text-hackathon-secondary text-[10px] tracking-widest uppercase">
-              Prize Pool
-            </p>
-            <p className="text-lg text-hackathon-primary font-bold">
-              ₹60,000
-            </p>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <p className="text-hackathon-secondary text-[10px] tracking-widest uppercase">
               Hosted By
             </p>
             <p className="text-sm text-white">

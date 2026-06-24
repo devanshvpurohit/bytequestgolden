@@ -261,7 +261,7 @@ VITE_GA_ID=G-XXXXXXXXXX
 
 ## ⚔ Mission
 
-To fuel innovation, cultivate teamwork, and challenge young developers to push the boundaries of what they can create across AI, IoT, Web3, and Gaming.
+To fuel innovation, cultivate teamwork, and challenge young developers to push the boundaries of what they can create across AI, IoT, Cybersecurity, and Gaming.
 
 ---
 
